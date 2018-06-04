@@ -1,0 +1,20 @@
+<div class="container" fxLayout="row" fxLayoutAlign="center">
+  <div fxLayout="column" fxFlex.xs="100%" fxFlex.sm="100%" fxFlex="420px">
+    <div fxLayoutAlign="center center">
+      <img src="/assets/images/logo.png" style="margin-bottom: 1em;">
+    </div>
+    <form>
+      <div fxLayout="column" fxFlex="100%">
+        <mat-form-field>
+          <input matInput placeholder="Email" name="userEmail" [(ngModel)]="userEmail" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="password" placeholder="Constraseña" name="userPassword" [(ngModel)]="userPassword" required>
+        </mat-form-field>
+        <div *ngIf="error" class="error-container">{{error}}</div>
+
+        <button (click)="login()" mat-raised-button color="accent">Iniciar sesión</button>
+      </div>  
+    </form>
+  </div> 
+</div>

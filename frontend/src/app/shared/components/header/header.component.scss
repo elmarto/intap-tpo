@@ -1,0 +1,77 @@
+@import 'shared';
+
+$folded-menu-background: #1f1f1f;
+
+:host {
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  height: $header-height;
+  width: 100%;
+  top: 0;
+  background: $header-background-color;
+  z-index: 99;
+  color: $primary-text-color;
+
+  .header-menu:not(:last-child) {
+    border-right: 1px solid #454545;
+  }
+
+  .header-sector {
+    height: $header-height;
+    border-left: 1px solid #454545;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: auto;
+  }
+
+  .folded-menu {
+    position: absolute;
+    width: 100%;
+    background: $folded-menu-background;
+    margin-top: $header-height;
+    left: 0;
+    top: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease-out;
+
+    &.unfolded {
+      max-height: 500px;
+    }
+
+    .menu-item {
+      padding: 1em;
+      margin: 0.5em 0;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      text-decoration: none;
+      color: $primary-text-color;
+      font-size: 0.8em;
+
+      &:not(:last-child) {
+        border-right: 1px solid #454545;
+      }
+
+      &.active {
+        color: $highlight-text-color;
+      }
+    }
+
+    &.user {
+      width: auto;
+      left: auto;
+      right: 0;
+    }
+
+  }
+
+  h1 {
+    font-weight: bold;
+    font-size: 20px;
+  }
+  
+}

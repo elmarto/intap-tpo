@@ -1,0 +1,19 @@
+<ng-container *ngIf="establecimientos">
+  <div class="main-container">
+    <div fxLayoutAlign="space-between center">
+      <h2>Establecimientos</h2>
+      <button mat-fab class="create-button" [routerLink]="['create']"><mat-icon>add</mat-icon></button>
+    </div>
+    <mat-accordion>
+      <mat-expansion-panel *ngFor="let establecimiento of establecimientos">
+        
+        <mat-expansion-panel-header>
+          <mat-panel-title>{{establecimiento.nombre}}</mat-panel-title>
+          <mat-panel-description>{{establecimiento.ciudad}} | {{establecimiento.estado}}</mat-panel-description>
+        </mat-expansion-panel-header>
+    
+        <p>Dirección: {{establecimiento.direccion}}</p>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</ng-container>

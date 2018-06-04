@@ -1,0 +1,113 @@
+@import 'shared';
+
+@keyframes autofill {
+  to {
+    color: #fff;
+    background: rgba(0, 0, 0, 0.1);
+    padding: 5px 10px;
+    padding-right: 0px;
+    width: 97%;
+  }
+}
+
+input:-webkit-autofill, input:-webkit-autofill:focus{
+  animation-name: autofill;
+  -webkit-animation-name: autofill;
+  animation-fill-mode: both;
+  -webkit-animation-fill-mode: both;
+  box-shadow: 0 0 0 1000px $main-background-color inset;
+  -webkit-box-shadow: 0 0 0 1000px $main-background-color inset;
+  -webkit-text-fill-color: #fff;
+}
+
+input::-webkit-credentials-auto-fill-button {
+  background-color: white !important;
+}
+
+input::-webkit-contacts-auto-fill-button {
+  background-color: white !important;
+}
+
+html { 
+  min-height: 100%;
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  font-family: $primary-font;
+  font-weight: 300;
+  margin: 0;
+  padding: 0;
+  background: $main-background-color;
+  
+  #app-content {
+    color: $primary-text-color;
+    background: $main-background-color;
+    margin: 0 auto;
+    min-height: calc(100% - #{$header-height});
+    padding-top: calc(#{$header-height});
+    max-width: 1024px;
+  }
+
+  a {
+    text-decoration: none;
+    color: $primary-text-color;
+  }
+}
+
+.loading-container { 
+  min-height: 300px;
+}
+ 
+.loading {
+  border: 5px solid $highlight-background-color; 
+  border-top: 5px solid $highlight-text-color; 
+  border-left: 5px solid $highlight-background-color;
+  border-bottom: 5px solid $highlight-background-color;
+  border-radius: 200%;
+  width: 30px;
+  height: 30px;
+  animation: gyro 2s linear infinite;
+
+  &.center-screen {
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    margin: auto auto;
+  }
+
+  @keyframes gyro {
+    0% {transform:rotate(0deg);}
+    100% {transform:rotate(360deg);}
+  }
+}
+
+.app-icon {
+  width: 30px;
+  height: 30px;
+  font-size: 32px!important;
+
+  &.big {
+    width: 35px;
+    height: 35px;
+  }
+
+  &.medium {
+    width: 25px;
+    height: 25px;
+  }
+
+  &.small {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+a.link{
+  cursor: pointer;
+  color: $link;
+}
+
+/* Customs */
+.container { margin: 15px; }
