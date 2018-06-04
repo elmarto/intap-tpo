@@ -12,66 +12,12 @@ import com.uade.ejb.dto.reserva.ReservaPaquete;
 public interface PWService {
 
     /**
-     * Obtiene todas las ofertas de hoteles vigentes sin detalles
+     * Obtiene todos los establecimientos
      *
      * @param BusquedaHotel
      *            busquedaHotel
-     * @return Response List<Oferta>
+     * @return Response List<EstablecimientoDto>
      */
 
-    public Response buscarHoteles(BusquedaHotel busquedaHotel);
-
-    /**
-     * Obtiene el detalle del hotel
-     *
-     * @param int
-     *            idOferta
-     * @return Response DetalleHotel
-     */
-
-    public Response getDetallesHotel(int idOferta);
-
-    /**
-     * Obtiene todas las ofertas de paquetes vigentes sin detalles
-     *
-     * @param BusquedaPaquete
-     *            busquedaPaquete
-     * @return Response List<Oferta>
-     */
-
-    public Response buscarPaquetes(BusquedaPaquete busquedaPaquete);
-
-    /**
-     * Obtiene el paquete con el detalle incluido
-     *
-     * @param int
-     *            idOferta
-     * @return Response DetallePaquete
-     */
-
-    public Response getDetallesPaquete(int idOferta);
-
-    /**
-     * Reservar hotel
-     *
-     * @return Response
-     */
-
-    public Response reservarHotel(ReservaHotel reserva);
-
-    /**
-     * Reservar paquete
-     *
-     * @return Response
-     */
-
-    public Response reservarPaquete(ReservaPaquete reserva);
-
-    /**
-     * Obtiene el listado de destinos disponibles
-     *
-     * @return Response List<String>
-     */
-
-    public Response getDestinos();
+    public Response GetEstablecimientos();
 }

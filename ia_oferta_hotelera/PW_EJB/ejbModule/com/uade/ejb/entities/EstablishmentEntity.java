@@ -15,9 +15,12 @@ public class EstablishmentEntity {
 	public String address;
     @Column(name = "establishmentphoto")
 	public String establishmentPhoto;
-
     @Column(name = "uid")
     public String uid;
+    @Column(name = "city")
+    public String city;
+    @Column(name = "status")
+    public String status;
 	
 	public EstablishmentEntity(HotelEntity hotel, 
 			String name, String address, 
@@ -68,5 +71,37 @@ public class EstablishmentEntity {
 	public String getEstablishmentPhoto()
 	{
 		return this.establishmentPhoto;
+	}
+	
+	public int getIdHotel() {
+		return idHotel;
+	}
+
+	public void setIdHotel(int idHotel) {
+		this.idHotel = idHotel;
+	}
+
+	public String getUid() {
+		return uid;
+	}
+
+	public void setUid(String uid) {
+		this.uid = uid;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 }

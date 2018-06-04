@@ -1,14 +1,15 @@
 package com.uade.ejb.services;
 
-import javax.annotation.PostConstruct;
-import javax.ejb.Stateless;
+import java.util.Collection;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
 import com.uade.ejb.dao.Destinos;
+import com.uade.ejb.dao.EstablecimientosDAO;
 import com.uade.ejb.dao.OfertasHoteles;
 import com.uade.ejb.dao.OfertasPaquetes;
 import com.uade.ejb.dao.Reservas;
+import com.uade.ejb.dto.EstablecimientoDto;
 import com.uade.ejb.dto.Response;
 import com.uade.ejb.dto.busqueda.BusquedaHotel;
 import com.uade.ejb.dto.busqueda.BusquedaPaquete;
@@ -21,6 +22,7 @@ public class PWServiceBean implements PWService {
     @PersistenceContext(unitName = "PW")
     private EntityManager em;
 
+    private EstablecimientosDAO establecimientosDAO;
     private OfertasHoteles ofertasHoteles;
     private OfertasPaquetes ofertasPaquetes;
     private Reservas reservas;
@@ -32,11 +34,13 @@ public class PWServiceBean implements PWService {
         ofertasPaquetes = new OfertasPaquetes(em);
         reservas = new Reservas(em);
         destinos = new Destinos(em);
+        establecimientosDAO = new EstablecimientosDAO(em);
     }
 
     @Override
-    public Response buscarHoteles(BusquedaHotel busquedaHotel) {
-        return ofertasHoteles.findByBusqueda(busquedaHotel);
+    public Response GetEstablecimientos() {
+    	Collection<EstablecimientoDto> establecimientos = establecimientosDAO.GetEstablecimientos();
+        return new Response(true, establecimientos);
     }
 
     @Override

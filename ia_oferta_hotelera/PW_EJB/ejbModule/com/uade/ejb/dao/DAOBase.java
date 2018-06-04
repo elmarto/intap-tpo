@@ -1,15 +1,14 @@
 package com.uade.ejb.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import com.uade.ejb.backoffice.Backoffice;
 import com.uade.ejb.entities.DestinoEntity;
-import com.uade.ejb.entities.MedioPagoEntity;
-import com.uade.ejb.entities.OfertaEntity;
-import com.uade.ejb.entities.PrestadorEntity;
-import com.uade.ejb.entities.ServicioEntity;
+import com.uade.ejb.entities.EstablishmentEntity;
 
 public class DAOBase {
     public static final String PREFIJO_DESTINO = "DST";
@@ -25,24 +24,15 @@ public class DAOBase {
         this.em = em;
     }
 
-    protected boolean checkPrestadorHailitado(PrestadorEntity prestador) {
-        if (prestador.getEstado() == 'P') {
-            char estado = Backoffice.getEstadoProveedor(prestador.getCodigo());
-            prestador.setEstado(estado);
+    protected List<EstablishmentEntity> getEstablecimientos() {
+        Query query = em.createQuery("FROM Establishment");
+        try {
+        	List<EstablishmentEntity> establishments = query.getResultList();
+        	return establishments;
         }
-        return prestador.getEstado() == 'A';
-    }
-
-    protected DestinoEntity getDestino(String nombre) {
-        String codigoDestino = getCodigo(PREFIJO_DESTINO, nombre);
-        DestinoEntity destinoEntity = em.find(DestinoEntity.class, codigoDestino);
-        if (destinoEntity == null) {
-            destinoEntity = new DestinoEntity();
-            destinoEntity.setCodigo(codigoDestino);
-            destinoEntity.setDescripcion(nombre.trim());
-            em.persist(destinoEntity);
+        catch(NoResultException e) {
+        	return null;
         }
-        return destinoEntity;
     }
 
     protected ServicioEntity getServicio(String descripcion) {
@@ -95,4 +85,6 @@ public class DAOBase {
     protected String getCodigo(String prefijo, String descripcion) {
         return prefijo + "-" + descripcion.toUpperCase().trim().replace(' ', '-');
     }
+    
+
 }
