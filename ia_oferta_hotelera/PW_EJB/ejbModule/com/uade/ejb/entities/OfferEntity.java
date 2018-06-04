@@ -24,10 +24,10 @@ public class OfferEntity {
 	public int quantity;
 	@Column(name = "status")
 	public int status;
-	public HashSet<ServiceEntity> service;
+	public HashSet<OfferServiceEntity> service;
 	
 	public OfferEntity(EstablishmentEntity establishment, String name, Date dateFrom, Date dateEnd, 
-			int quota, int quantity, HashSet<ServiceEntity> service, int status)
+			int quota, int quantity, HashSet<OfferServiceEntity> service, int status)
 	{
 		this.establishment = establishment;
 		this.name = name;
@@ -95,11 +95,11 @@ public class OfferEntity {
 		this.status = status;
 	}
 
-	public HashSet<ServiceEntity> getService() {
+	public HashSet<OfferServiceEntity> getService() {
 		return service;
 	}
 
-	public void setService(HashSet<ServiceEntity> service) {
+	public void setService(HashSet<OfferServiceEntity> service) {
 		this.service = service;
 	}
 	

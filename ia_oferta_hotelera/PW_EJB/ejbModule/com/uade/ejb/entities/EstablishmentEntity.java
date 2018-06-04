@@ -15,6 +15,9 @@ public class EstablishmentEntity {
 	public String address;
     @Column(name = "establishmentphoto")
 	public String establishmentPhoto;
+
+    @Column(name = "uid")
+    public String uid;
 	
 	public EstablishmentEntity(HotelEntity hotel, 
 			String name, String address, 
