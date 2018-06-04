@@ -23,11 +23,10 @@ public class EstablecimientosDAO extends DAOBase {
 			EstablishmentEntity item = i.next();
 			EstablecimientoDto establecimiento = new EstablecimientoDto();
 			establecimiento.direccion = item.address;
-			establecimiento.estado = item.status;
-			establecimiento.ciudad = item.city;
 			establecimiento.id = item.idHotel;
 			establecimiento.nombre = item.name;
-			establecimiento.uid = item.uid;		
+			establecimiento.uid = item.uid;
+			establecimiento.fotosEstablecimiento.add(item.establishmentPhoto);
 		    establecimientos.add(establecimiento);
 		}
 		return establecimientos;
