@@ -34,10 +34,10 @@
       </div>
 
       <mat-form-field class="field">
-          <textarea matInput formControlName="descripcion" placeholder="Descripción"></textarea>
-          <mat-error *ngIf="form.get('descripcion').hasError('required')">Este campo es requerido</mat-error>
-          <mat-error *ngIf="form.get('descripcion').hasError('maxlength')">Debe tener menos de 100 caracteres.</mat-error>
-        </mat-form-field>
+        <textarea matInput formControlName="descripcion" placeholder="Descripción"></textarea>
+        <mat-error *ngIf="form.get('descripcion').hasError('required')">Este campo es requerido</mat-error>
+        <mat-error *ngIf="form.get('descripcion').hasError('maxlength')">Debe tener menos de 100 caracteres.</mat-error>
+      </mat-form-field>
     </div>
 
     <div fxLayoutAlign="end center" fxLayoutGap="1em">

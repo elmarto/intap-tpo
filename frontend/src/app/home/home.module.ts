@@ -13,6 +13,8 @@ import { EstablecimientoListComponent } from './views/establecimiento-list/estab
 import { LoginComponent } from './views/login/login.component';
 import { EstablecimientoCreateComponent } from './views/establecimiento-create/establecimiento-create.component';
 import { HomeComponent } from './views/home/home.component';
+import { OfertaCreateComponent } from './views/oferta-create/oferta-create.component';
+import { OfertaListComponent } from './views/oferta-list/oferta-list.component';
 
 
 @NgModule({
@@ -30,7 +32,9 @@ import { HomeComponent } from './views/home/home.component';
     LoginComponent,
     EstablecimientoListComponent,
     EstablecimientoCreateComponent,
-    HomeComponent
+    HomeComponent,
+    OfertaCreateComponent,
+    OfertaListComponent
   ]
 })
 export class HomeModule {}

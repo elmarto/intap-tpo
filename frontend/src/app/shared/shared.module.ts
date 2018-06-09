@@ -10,7 +10,8 @@ import { NguCarouselModule } from '@ngu/carousel';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from './material/material.module';
 import { HeaderComponent, FooterComponent } from './components';
-import { EstablecimientosService, AuthService } from './services';
+import { EstablecimientosService, OfertasService, AuthService } from './services';
+import { ServiciosService } from './services/servicios.service';
 
 
 @NgModule({
@@ -31,7 +32,9 @@ import { EstablecimientosService, AuthService } from './services';
   ],
   providers: [
     AuthService,
-    EstablecimientosService
+    EstablecimientosService,
+    OfertasService,
+    ServiciosService
   ],
   exports: [
     CommonModule,
