@@ -18,5 +18,8 @@
 	<classpathentry kind="lib" path="/PW_EAR/EarContent/lib/backoffice.jar"/>
 	<classpathentry kind="lib" path="/PW_EAR/EarContent/lib/commons-io-2.4.jar"/>
 	<classpathentry kind="lib" path="D:/Gaston/Android/Java/libs/javax.persistence.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Gaston/Desktop/intap-tpo/ia_oferta_hotelera/lib/javax.jms.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Gaston/Desktop/intap-tpo/ia_oferta_hotelera/lib/javax.annotation.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Gaston/Desktop/intap-tpo/ia_oferta_hotelera/lib/javax.ejb.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

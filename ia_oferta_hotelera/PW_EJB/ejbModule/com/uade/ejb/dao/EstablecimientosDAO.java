@@ -5,8 +5,12 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+
 import com.uade.ejb.entities.EstablishmentEntity;
+import com.uade.ejb.entities.RequestEntity;
 import com.uade.ejb.dto.EstablecimientoDto;
+import com.uade.ejb.dto.Response;
 
 public class EstablecimientosDAO extends DAOBase {
 
@@ -30,6 +34,28 @@ public class EstablecimientosDAO extends DAOBase {
 		    establecimientos.add(establecimiento);
 		}
 		return establecimientos;
+	}
+	
+	public Response CreateNewEstablishment(String name, String address, Collection<String> establishment_photo) {
+		EstablishmentEntity establishment = searchEstablishment(name);
+		
+		if(establishment != null) {
+			return new Response(false, null);
+		}
+		
+		String photos = establishment_photo.toString();
+		establishment = new EstablishmentEntity(null, name, address, photos);
+		EntityTransaction transaction = em.getTransaction(); 
+		transaction.begin();
+		em.persist(establishment);
+		transaction.commit();
+		em.close();
+		
+		//Request a Backoffice
+		//RequestEntity request = new RequestEntity(establishment, 1);
+		
+		
+		return new Response(true, null);
 	}
 
 }

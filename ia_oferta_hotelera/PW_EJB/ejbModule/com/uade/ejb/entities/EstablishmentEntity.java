@@ -5,7 +5,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "establishment")
 public class EstablishmentEntity {
-    
+	@Column(name = "id")
+	public int id;
     public HotelEntity hotel;
     @Column(name = "idhotel")    
 	public int idHotel;
@@ -21,6 +22,8 @@ public class EstablishmentEntity {
     public String city;
     @Column(name = "status")
     public String status;
+    @Column(name = "stars")
+    public int stars;
 	
 	public EstablishmentEntity(HotelEntity hotel, 
 			String name, String address, 

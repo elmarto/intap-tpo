@@ -1,42 +1,64 @@
 package com.uade.ejb.entities;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.HashSet;
+import java.util.Iterator;
 
 import javax.persistence.Column;
 import javax.persistence.Table;
 
+import com.uade.ejb.dto.EstablecimientoDto;
+import com.uade.ejb.dto.OfertaDto;
+
 @Table(name = "offer")
 public class OfferEntity {
+	@Column(name ="id")
+	public int id;
 	
 	public EstablishmentEntity establishment;
+	
 	@Column(name = "idestablishment")
 	public int idEstablishment;
+	
 	@Column(name = "name")
 	public String name;
+	
 	@Column(name = "datefrom")
 	public Date dateFrom;
+	
 	@Column(name = "dateend")
 	public Date dateEnd;
-	@Column(name = "quota")
-	public int quota;
+	
 	@Column(name = "quantity")
 	public int quantity;
-	@Column(name = "status")
-	public int status;
+	
+	//@Column(name = "status")
+	//public int status;
+	
 	public HashSet<OfferServiceEntity> service;
 	
+	@Column(name = "price")
+	public float price;
+	
+	@Column(name = "paymentMethods")
+	public String paymentMethods;
+	
+	@Column(name = "policies")
+	public String policies;
+	
+	@Column(name ="roomType")
+	public String roomType;
+	
 	public OfferEntity(EstablishmentEntity establishment, String name, Date dateFrom, Date dateEnd, 
-			int quota, int quantity, HashSet<OfferServiceEntity> service, int status)
+			int quantity, HashSet<OfferServiceEntity> service/*, int status*/)
 	{
 		this.establishment = establishment;
 		this.name = name;
 		this.dateFrom = dateFrom;
 		this.dateEnd = dateEnd;
-		this.quota = quota;
 		this.quantity = quantity;
 		this.service = service;
-		this.status = status;
+		//this.status = status;
 	}
 
 	public EstablishmentEntity getEstablishment() {
@@ -71,14 +93,6 @@ public class OfferEntity {
 		this.dateEnd = dateEnd;
 	}
 
-	public int getQuota() {
-		return quota;
-	}
-
-	public void setQuota(int quota) {
-		this.quota = quota;
-	}
-
 	public int getQuantity() {
 		return quantity;
 	}
@@ -87,13 +101,13 @@ public class OfferEntity {
 		this.quantity = quantity;
 	}
 
-	public int getStatus() {
+	/*public int getStatus() {
 		return status;
 	}
 
 	public void setStatus(int status) {
 		this.status = status;
-	}
+	}*/
 
 	public HashSet<OfferServiceEntity> getService() {
 		return service;
@@ -106,5 +120,15 @@ public class OfferEntity {
 	public HashSet<OfferEntity> getAllOffers()
 	{
 		return null;
+	}
+	
+	public String getServicesString() {
+		String result = "";
+		for (Iterator<OfferServiceEntity> i = this.service.iterator(); i.hasNext();) {
+			OfferServiceEntity item = i.next();
+			result = result + " " + item.serviceName;
+		}
+		
+		return result;
 	}
 }

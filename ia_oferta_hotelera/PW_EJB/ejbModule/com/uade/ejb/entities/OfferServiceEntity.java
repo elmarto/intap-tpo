@@ -7,11 +7,15 @@ public class OfferServiceEntity {
 	@Column(name = "id_service")
 	private int idService;
 	
+	@Column(name = "serviceName")
+	public String serviceName;
+	
 	@Column(name = "id_type_service")
 	private int idServiceType;
+	
 	private ServiceTypeEntity serviceTypeEntity; 
 	
-	public ServiceEntity(int id, int idServiceType, ServiceTypeEntity serviceTypeEntity)
+	public OfferServiceEntity(int id, int idServiceType, ServiceTypeEntity serviceTypeEntity)
 	{
 		this.idService = id;
 		this.idServiceType = idServiceType;

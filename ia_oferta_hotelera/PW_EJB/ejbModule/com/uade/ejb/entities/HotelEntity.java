@@ -13,35 +13,21 @@ public class HotelEntity {
 	@Column(name = "id")
 	private int id;
 	
-    @Column(name = "user")
-    private String user;
-
-    @Column(name = "pass")
-    private String pass;
-
     @Column(name = "email")
     private String email;
+	
+    @Column(name = "pass")
+    private String pass;
     
     @Column(name = "photo")
     private String photo;
     
-    @Column(name = "photo")
     private HashSet<EstablishmentEntity> establishment;
 
     public HotelEntity() {
         super();
     }
 
-    public void setUser(String user)
-	{
-		this.user = user;
-	}
-	
-	public String getUser()
-	{
-		return this.user;
-	}
-	
 	public void setPass(String pass)
 	{
 		this.pass = pass;
