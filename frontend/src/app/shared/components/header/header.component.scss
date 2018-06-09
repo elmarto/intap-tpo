@@ -11,7 +11,7 @@ $folded-menu-background: #1f1f1f;
   top: 0;
   background: $header-background-color;
   z-index: 99;
-  color: $primary-text-color;
+  color: white;
 
   .header-menu:not(:last-child) {
     border-right: 1px solid #454545;

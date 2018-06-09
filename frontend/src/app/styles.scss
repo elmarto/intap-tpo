@@ -10,15 +10,6 @@
   }
 }
 
-input:-webkit-autofill, input:-webkit-autofill:focus{
-  animation-name: autofill;
-  -webkit-animation-name: autofill;
-  animation-fill-mode: both;
-  -webkit-animation-fill-mode: both;
-  box-shadow: 0 0 0 1000px $main-background-color inset;
-  -webkit-box-shadow: 0 0 0 1000px $main-background-color inset;
-  -webkit-text-fill-color: #fff;
-}
 
 input::-webkit-credentials-auto-fill-button {
   background-color: white !important;
@@ -40,14 +31,19 @@ body {
   margin: 0;
   padding: 0;
   background: $main-background-color;
+
+  h2 {
+    color: white;
+  }
   
   #app-content {
     color: $primary-text-color;
     background: $main-background-color;
+    background: linear-gradient(rgba(0,0,0, 0.5), rgba(255,255,255, 0.5)), url('assets/images/bg.jpg');
     margin: 0 auto;
     min-height: calc(100% - #{$header-height});
+    padding: 1em;
     padding-top: calc(#{$header-height});
-    max-width: 1024px;
   }
 
   a {

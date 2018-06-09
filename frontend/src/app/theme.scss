@@ -46,7 +46,7 @@ $app-primary: mat-palette($mat-blue-grey);
 $app-accent:  mat-palette($mat-velvet-red);
 
 // Create the theme object (a Sass map containing all of the palettes).
-$app-theme: mat-dark-theme($app-primary, $app-accent);
+$app-theme: mat-light-theme($app-primary, $app-accent);
 
 @mixin mix-app-theme($app-theme) {
   $primary: map-get($app-theme, primary);

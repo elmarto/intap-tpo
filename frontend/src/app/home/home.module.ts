@@ -12,6 +12,7 @@ import { MatStepperModule, MatInputModule, MatDividerModule } from '@angular/mat
 import { EstablecimientoListComponent } from './views/establecimiento-list/establecimiento-list.component';
 import { LoginComponent } from './views/login/login.component';
 import { EstablecimientoCreateComponent } from './views/establecimiento-create/establecimiento-create.component';
+import { HomeComponent } from './views/home/home.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { EstablecimientoCreateComponent } from './views/establecimiento-create/e
   declarations: [
     LoginComponent,
     EstablecimientoListComponent,
-    EstablecimientoCreateComponent
+    EstablecimientoCreateComponent,
+    HomeComponent
   ]
 })
 export class HomeModule {}

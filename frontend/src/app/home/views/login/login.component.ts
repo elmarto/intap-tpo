@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     if (this.userEmail === 'admin' && this.userPassword === 'admin') {
-      this.router.navigate(['/establecimientos']);
+      this.router.navigate(['/home']);
     } else {
       this.error = 'Email o Contraseña incorrectos';
     }

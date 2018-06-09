@@ -1,0 +1,17 @@
+main {
+  padding: 2em;
+
+  .card {
+    width: 30%;
+
+    .title {
+      font-size: 1.5em;
+    }
+
+    .icon {
+      color: gray;
+      font-size: 3em;
+      margin: 0.5em;
+    }
+  }
+}

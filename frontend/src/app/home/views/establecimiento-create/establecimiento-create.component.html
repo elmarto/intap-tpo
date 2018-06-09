@@ -1,32 +1,48 @@
 <h2>Crear Establecimiento</h2>
 
 <mat-card>
-  <form>
+  <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" novalidate>
     <div fxLayout="row wrap">
       <mat-form-field class="field">
-        <input matInput placeholder="Nombre">
+        <input matInput formControlName="nombre" placeholder="Nombre">
+        <mat-error *ngIf="form.get('nombre').hasError('required')">Este campo es requerido</mat-error>
+        <mat-error *ngIf="form.get('nombre').hasError('maxlength')">Debe tener menos de 50 caracteres.</mat-error>
       </mat-form-field>
     
       <mat-form-field class="field">
-        <input matInput placeholder="Dirección">
+        <input matInput formControlName="direccion" placeholder="Dirección">
+        <mat-error *ngIf="form.get('direccion').hasError('required')">Este campo es requerido</mat-error>
+        <mat-error *ngIf="form.get('direccion').hasError('maxlength')">Debe tener menos de 50 caracteres.</mat-error>
       </mat-form-field>
     
       <mat-form-field class="field">
-        <input matInput placeholder="Ciudad">
-      </mat-form-field>
-    
-      <mat-form-field class="field">
-        <input matInput placeholder="Descripción">
+        <input matInput formControlName="ciudad" placeholder="Ciudad">
+        <mat-error *ngIf="form.get('ciudad').hasError('required')">Este campo es requerido</mat-error>
+        <mat-error *ngIf="form.get('ciudad').hasError('maxlength')">Debe tener menos de 50 caracteres.</mat-error>
       </mat-form-field>
 
+      <div class="field" fxLayoutAlign="start center" fxLayoutGap="1em">
+        <mat-form-field>
+          <mat-select formControlName="estrellas" placeholder="Estrellas">
+            <mat-option *ngFor="let estrella of estrellas" [value]="estrella.value">{{ estrella.value }}</mat-option>
+          </mat-select>
+          <mat-error class="error-combo" *ngIf="form.get('estrellas').touched && form.get('estrellas').hasError('required')">Este campo es requeridoEste campo es requerido</mat-error>
+        </mat-form-field>
+        <span class="estrellas" fxLayoutGap="0.5em" *ngIf="form.get('estrellas').value">
+          <span *ngFor="let estrella of 'a'.repeat(form.get('estrellas').value - 1).split('a')">★</span>
+        </span>
+      </div>
+
       <mat-form-field class="field">
-        <input matInput placeholder="Estrellas">
-      </mat-form-field>
+          <textarea matInput formControlName="descripcion" placeholder="Descripción"></textarea>
+          <mat-error *ngIf="form.get('descripcion').hasError('required')">Este campo es requerido</mat-error>
+          <mat-error *ngIf="form.get('descripcion').hasError('maxlength')">Debe tener menos de 100 caracteres.</mat-error>
+        </mat-form-field>
     </div>
 
     <div fxLayoutAlign="end center" fxLayoutGap="1em">
-      <button mat-button color="accent" [routerLink]="['/establecimientos']">CANCELAR</button>
-      <button mat-raised-button color="accent">CREAR</button>
+      <button mat-button color="accent" type="button" [routerLink]="['/establecimientos']">CANCELAR</button>
+      <button mat-raised-button type="submit" [disabled]="!form.valid" color="accent">CREAR</button>
     </div>
   </form>
 </mat-card>
