@@ -1,0 +1,17 @@
+@import './colors';
+
+/**
+ *  Variables
+ */
+$primary-font: 'Roboto', sans-serif;
+$secondary-font: 'Roboto Condensed', sans-serif;
+$title-font: 'Roboto', sans-serif;
+
+/**
+ *  Styles
+ */
+
+h1,h2,h3,h4,h5,h6 {
+  font-weight: 700;
+  font-family: $title-font;
+}

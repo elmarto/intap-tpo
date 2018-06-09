@@ -1,0 +1,30 @@
+<ng-container *ngIf="establecimientos">
+  <div class="main-container">
+    <div fxLayoutAlign="space-between center">
+      <div fxLayoutAlign="start center">
+        <button mat-icon-button [routerLink]="['/home']">
+          <i class="material-icons" style="color: white">arrow_back_ios</i>
+        </button>
+        <h2>Establecimientos</h2>
+      </div>
+      <button mat-fab class="create-button" [routerLink]="['create']"><mat-icon>add</mat-icon></button>
+    </div>
+    <mat-accordion>
+      <mat-expansion-panel *ngFor="let establecimiento of establecimientos">
+        
+        <mat-expansion-panel-header>
+          <mat-panel-title fxLayoutGap="1em">
+            <span>{{establecimiento.nombre}}</span>
+            <span class="estrellas" fxLayoutGap="0.5em">
+              <span *ngFor="let estrella of 'a'.repeat(establecimiento.estrellas - 1).split('a')">★</span>
+            </span>
+
+          </mat-panel-title>
+          <mat-panel-description>{{establecimiento.ciudad}}</mat-panel-description>
+        </mat-expansion-panel-header>
+    
+        <p>Dirección: {{establecimiento.direccion}}</p>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</ng-container>

@@ -1,0 +1,201 @@
+$min-xs: 375px;
+$min-sm: 600px;
+$min-md: 960px;
+$min-lg: 1280px;
+$min-xl: 1920px;
+
+@mixin media-xxs {
+  @media (max-width: $min-xs - 1) {
+    @content;
+  }
+}
+
+@mixin media-xs {
+  @media (max-width: $min-sm - 1) {
+    @content;
+  }
+}
+
+@mixin media-sm {
+  @media (min-width: $min-sm) and (max-width: $min-md - 1) {
+    @content;
+  }
+}
+
+@mixin media-md {
+  @media (min-width: $min-md) and (max-width: $min-lg - 1){
+    @content;
+  }
+}
+
+@mixin media-lg {
+  @media (min-width: $min-lg) and (max-width: $min-xl - 1){
+    @content;
+  }
+}
+
+@mixin media-xl {
+  @media (min-width: $min-xl) {
+    @content;
+  }
+}
+
+// LESS THAN
+
+@mixin media-lt-xs {
+  @media (max-width: $min-sm - 1) {
+    @content;
+  }
+}
+
+@mixin media-lt-sm {
+  @media (max-width: $min-md - 1) {
+    @content;
+  }
+}
+
+@mixin media-lt-md {
+  @media (max-width: $min-lg - 1) {
+    @content;
+  }
+}
+
+@mixin media-lt-lg {
+  @media (max-width: $min-xl - 1) {
+    @content;
+  }
+}
+
+
+
+//GREATER THAN
+
+@mixin media-gt-xxs {
+  @media (min-width: $min-xs) {
+    @content;
+  }
+}
+
+@mixin media-gt-xs {
+  @media (min-width: $min-sm) {
+    @content;
+  }
+}
+
+@mixin media-gt-sm {
+  @media (min-width: $min-md) {
+    @content;
+  }
+}
+
+@mixin media-gt-md {
+  @media (min-width: $min-lg) {
+    @content;
+  }
+}
+
+@mixin media-gt-lg {
+  @media (min-width: $min-xl) {
+    @content;
+  }
+}
+
+
+// HEIGHT
+
+@mixin media-height-xxs {
+  @media (max-height: $min-xs - 1) {
+    @content;
+  }
+}
+
+@mixin media-height-xs {
+  @media (max-height: $min-sm - 1) {
+    @content;
+  }
+}
+
+@mixin media-height-sm {
+  @media (min-height: $min-sm) and (max-height: $min-md - 1) {
+    @content;
+  }
+}
+
+@mixin media-height-md {
+  @media (min-height: $min-md) and (max-height: $min-lg - 1){
+    @content;
+  }
+}
+
+@mixin media-height-lg {
+  @media (min-height: $min-lg) and (max-height: $min-xl - 1){
+    @content;
+  }
+}
+
+@mixin media-height-xl {
+  @media (min-height: $min-xl) {
+    @content;
+  }
+}
+
+// HEIGHT - LESS THAN
+
+@mixin media-height-lt-xs {
+  @media (max-height: $min-sm - 1) {
+    @content;
+  }
+}
+
+@mixin media-height-lt-sm {
+  @media (max-height: $min-md - 1) {
+    @content;
+  }
+}
+
+@mixin media-height-lt-md {
+  @media (max-height: $min-lg - 1) {
+    @content;
+  }
+}
+
+@mixin media-height-lt-lg {
+  @media (max-height: $min-xl - 1) {
+    @content;
+  }
+}
+
+
+//HEIGHT - GREATER THAN
+
+@mixin media-height-gt-xxs {
+  @media (min-height: $min-xs) {
+    @content;
+  }
+}
+
+@mixin media-height-gt-xs {
+  @media (min-height: $min-sm) {
+    @content;
+  }
+}
+
+@mixin media-height-gt-sm {
+  @media (min-height: $min-md) {
+    @content;
+  }
+}
+
+@mixin media-height-gt-md {
+  @media (min-height: $min-lg) {
+    @content;
+  }
+}
+
+@mixin media-height-gt-lg {
+  @media (min-height: $min-xl) {
+    @content;
+  }
+}
+
+

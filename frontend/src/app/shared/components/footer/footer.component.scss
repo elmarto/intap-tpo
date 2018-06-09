@@ -1,0 +1,12 @@
+@import 'shared';
+
+:host {
+  footer {
+    background-color: $main-background-color;
+    text-transform: uppercase;
+    padding-bottom: 15px 0;
+    font-family: $secondary-font;
+    color: $secondary-text-color;
+    font-size: 0.6em;
+  }
+}
