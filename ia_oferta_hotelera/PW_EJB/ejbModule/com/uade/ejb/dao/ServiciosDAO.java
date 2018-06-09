@@ -8,4 +8,8 @@ public class ServiciosDAO {
 		//llamar a backoffice
 		return null;
 	}
+
+	public boolean Validate(ServicioDto servicioDto) {
+		return true;
+	}
 }

@@ -1,7 +1,7 @@
 package com.uade.ejb.entities;
 
 import java.sql.Date;
-import java.util.HashSet;
+import java.util.Collection;
 import java.util.Iterator;
 
 import javax.persistence.Column;
@@ -35,7 +35,7 @@ public class OfferEntity {
 	//@Column(name = "status")
 	//public int status;
 	
-	public HashSet<OfferServiceEntity> service;
+	public Collection<OfferServiceEntity> service;
 	
 	@Column(name = "price")
 	public float price;
@@ -50,7 +50,7 @@ public class OfferEntity {
 	public String roomType;
 	
 	public OfferEntity(EstablishmentEntity establishment, String name, Date dateFrom, Date dateEnd, 
-			int quantity, HashSet<OfferServiceEntity> service/*, int status*/)
+			int quantity, Collection<OfferServiceEntity> service/*, int status*/)
 	{
 		this.establishment = establishment;
 		this.name = name;
@@ -109,17 +109,12 @@ public class OfferEntity {
 		this.status = status;
 	}*/
 
-	public HashSet<OfferServiceEntity> getService() {
+	public Collection<OfferServiceEntity> getService() {
 		return service;
 	}
 
-	public void setService(HashSet<OfferServiceEntity> service) {
+	public void setService(Collection<OfferServiceEntity> service) {
 		this.service = service;
-	}
-	
-	public HashSet<OfferEntity> getAllOffers()
-	{
-		return null;
 	}
 	
 	public String getServicesString() {
