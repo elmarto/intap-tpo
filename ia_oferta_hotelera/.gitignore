@@ -2,3 +2,4 @@
 RemoteSystemsTempFiles
 PW_EJB/build
 PW_WEB/build
+.classpath
