@@ -21,5 +21,8 @@
 	<classpathentry kind="lib" path="C:/Users/Gaston/Desktop/intap-tpo/ia_oferta_hotelera/lib/javax.jms.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Gaston/Desktop/intap-tpo/ia_oferta_hotelera/lib/javax.annotation.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Gaston/Desktop/intap-tpo/ia_oferta_hotelera/lib/javax.ejb.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Gaston/Desktop/intap-tpo/ia_oferta_hotelera/lib/javaee.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Gaston/Desktop/intap-tpo/ia_oferta_hotelera/lib/javax.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Gaston/Desktop/intap-tpo/ia_oferta_hotelera/lib/javax.persistence.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

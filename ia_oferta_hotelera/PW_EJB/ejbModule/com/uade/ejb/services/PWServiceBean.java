@@ -14,7 +14,9 @@ import com.uade.ejb.dao.OfertasDAO;
 import com.uade.ejb.dao.OfertasHoteles;
 import com.uade.ejb.dao.OfertasPaquetes;
 import com.uade.ejb.dao.Reservas;
+import com.uade.ejb.dao.ServiciosDAO;
 import com.uade.ejb.dto.EstablecimientoDto;
+import com.uade.ejb.dto.EstablecimientoServicioDto;
 import com.uade.ejb.dto.HotelDto;
 import com.uade.ejb.dto.OfertaDto;
 import com.uade.ejb.dto.Response;
@@ -33,17 +35,10 @@ public class PWServiceBean implements PWService {
     private EstablecimientosDAO establecimientosDAO;
     private HotelDAO hotelDAO;
     private OfertasDAO ofertasDAO;
-    private OfertasHoteles ofertasHoteles;
-    private OfertasPaquetes ofertasPaquetes;
-    private Reservas reservas;
-    private Destinos destinos;
+    private ServiciosDAO serviciosDAO; 
 
     @PostConstruct
     public void init() {
-        ofertasHoteles = new OfertasHoteles(em);
-        ofertasPaquetes = new OfertasPaquetes(em);
-        reservas = new Reservas(em);
-        destinos = new Destinos(em);
         establecimientosDAO = new EstablecimientosDAO(em);
         hotelDAO = new HotelDAO(em);
         ofertasDAO = new OfertasDAO(em);
@@ -76,12 +71,12 @@ public class PWServiceBean implements PWService {
     @Override 
     public Response FormNewOffer() {
     	Collection<EstablecimientoDto> establecimientos = establecimientosDAO.GetEstablecimientos();
-    	Collection<EstablecimientoDto> establecimientos = serviciosDAO.GetEstablecimientos();
-    	return null;
+    	Collection<ServicioDto> servicios = serviciosDAO.getServices();
+    	return new Response(true, new EstablecimientoServicioDto(establecimientos, servicios));
     }
     
     @Override
     public Response createNewOffer(String nombre_establecimiento, String nombre, Date fechaDesde, Date fechaHasta, int cuota, int canitdad, Collection<ServicioDto> servicios, int estado) {
-    	return null;
+    	return ofertasDAO.CreateNewOffer(nombre_establecimiento, nombre, fechaDesde, fechaHasta, cuota, canitdad, servicios, estado);
     }
 }
