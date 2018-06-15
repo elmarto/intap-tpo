@@ -42,7 +42,7 @@ public class OfertasResource {
 //    @POST
 //    @Path("/")
 //    @Produces("application/json")
-//    public Response getDetallesPaquete(@QueryParam("nombre_establecimiento") String nombre_establecimiento, 
+//    public OfertaDto getDetallesPaquete(@QueryParam("nombre_establecimiento") String nombre_establecimiento, 
 //    		@QueryParam("nombre") String nombre, @QueryParam("fechaDesde") Date fechaDesde, 
 //    		@QueryParam("fechaHasta") Date fechaHasta, 
 //    		@QueryParam("cuota") int cuota, @QueryParam("cantidad") int canitdad, 

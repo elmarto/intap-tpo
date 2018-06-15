@@ -77,16 +77,19 @@ public class PWServiceBean implements PWService {
     	ofertas.add(e);
         return ofertas;
     }
+    
+//    @Override
+//    public OfertaDto createNewOffer(String nombre_establecimiento, String nombre, Date fechaDesde, Date fechaHasta, int cuota, int canitdad, Collection<ServicioDto> servicios, int estado) {
+//    	// return ofertasDAO.CreateNewOffer(nombre_establecimiento, nombre, fechaDesde, fechaHasta, cuota, canitdad, servicios, estado);
+//    	OfertaDto o = new OfertaDto();
+//    	o.nombre = "Oferta recien creada!";
+//    	return o;
+//    }
 //    
 //    @Override 
 //    public Response FormNewOffer() {
 //    	Collection<EstablecimientoDto> establecimientos = establecimientosDAO.GetEstablecimientos();
 //    	Collection<ServicioDto> servicios = serviciosDAO.getServices();
 //    	return new Response(true, new EstablecimientoServicioDto(establecimientos, servicios));
-//    }
-//    
-//    @Override
-//    public Response createNewOffer(String nombre_establecimiento, String nombre, Date fechaDesde, Date fechaHasta, int cuota, int canitdad, Collection<ServicioDto> servicios, int estado) {
-//    	return ofertasDAO.CreateNewOffer(nombre_establecimiento, nombre, fechaDesde, fechaHasta, cuota, canitdad, servicios, estado);
 //    }
 }
