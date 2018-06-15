@@ -12,7 +12,7 @@ export class EstablecimientosService  {
     private http: Http
   ) {}
 
-  all(): Observable<{ establecimientos: Establecimiento[] }> {
+  all(): Observable<Establecimiento[]> {
     const establecimiento: Establecimiento = {
       id: 1,
       uid: 'asdfasdfasd',
@@ -29,11 +29,11 @@ export class EstablecimientosService  {
       mapa: { url: '' },
       fotosEstablecimiento: [{ url: '' }]
     };
-    const responseMock: { establecimientos: Establecimiento[] } = {establecimientos: [establecimiento, establecimiento, establecimiento]};
-    // return this.http.get(`${env.apiUrl}/establecimientos`).pipe(
-    return this.http.get(`http://calapi.inadiutorium.cz/api/v0/en/calendars`).pipe(
-      // map(response => response.json()),
-      map(response => responseMock),
+    const responseMock: Establecimiento[] = [establecimiento, establecimiento, establecimiento];
+    return this.http.get(`${env.apiUrl}/establecimientos`).pipe(
+    // return this.http.get(`http://calapi.inadiutorium.cz/api/v0/en/calendars`).pipe(
+      map(response => response.json()),
+      // map(response => responseMock),
       catchError(this.handleError)
     );
   }

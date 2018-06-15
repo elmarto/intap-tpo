@@ -6,7 +6,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-import com.uade.ejb.dto.Response;
+import com.uade.ejb.dto.OHResponse;
 
 public class Destinos extends DAOBase {
 
@@ -14,18 +14,18 @@ public class Destinos extends DAOBase {
         super(em);
     }
 
-    public Response getDestinos() {
-        Response response = null;
+    public OHResponse getDestinos() {
+        OHResponse response = null;
         try {
             Query query = em.createQuery("from DestinoEntity d");
             List<String> destinos = new ArrayList<>();
 //            for (DestinoEntity destinoEntity : (List<DestinoEntity>) query.getResultList()) {
 //                destinos.add(destinoEntity.getDescripcion());
 //            }
-            response = new Response(true, destinos);
+            response = new OHResponse(true, destinos);
         } catch (Exception e) {
             e.printStackTrace();
-            response = new Response(false, e.getMessage());
+            response = new OHResponse(false, e.getMessage());
         }
         return response;
     }

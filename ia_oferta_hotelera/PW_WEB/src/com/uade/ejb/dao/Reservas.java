@@ -9,7 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import com.uade.ejb.backoffice.Backoffice;
-import com.uade.ejb.dto.Response;
+import com.uade.ejb.dto.OHResponse;
 import com.uade.ejb.dto.reserva.ReservaHotel;
 import com.uade.ejb.dto.reserva.ReservaPaquete;
 //import com.uade.ejb.entities.MedioPagoEntity;
@@ -23,8 +23,8 @@ public class Reservas extends DAOBase {
         super(em);
     }
 
-    public Response reservarHotel(ReservaHotel reserva) {
-        Response response = null;
+    public OHResponse reservarHotel(ReservaHotel reserva) {
+        OHResponse response = null;
 //        try {
 //            OfertaEntity ofertaEntity = getOfertaHotel(reserva.getIdOferta());
 //            if (ofertaEntity != null) {
@@ -70,8 +70,8 @@ public class Reservas extends DAOBase {
         return response;
     }
 
-    public Response reservarPaquete(ReservaPaquete reserva) {
-        Response response = null;
+    public OHResponse reservarPaquete(ReservaPaquete reserva) {
+        OHResponse response = null;
 //        try {
 //            OfertaEntity ofertaEntity = getOfertaPaquete(reserva.getIdOferta());
 //            if (ofertaEntity != null) {

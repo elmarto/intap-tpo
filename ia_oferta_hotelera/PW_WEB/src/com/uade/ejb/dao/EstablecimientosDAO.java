@@ -10,7 +10,7 @@ import javax.persistence.EntityTransaction;
 import com.uade.ejb.entities.EstablishmentEntity;
 import com.uade.ejb.entities.RequestEntity;
 import com.uade.ejb.dto.EstablecimientoDto;
-import com.uade.ejb.dto.Response;
+import com.uade.ejb.dto.OHResponse;
 
 public class EstablecimientosDAO extends DAOBase {
 
@@ -36,11 +36,11 @@ public class EstablecimientosDAO extends DAOBase {
 		return establecimientos;
 	}
 	
-	public Response CreateNewEstablishment(String name, String address, Collection<String> establishment_photo) {
+	public OHResponse CreateNewEstablishment(String name, String address, Collection<String> establishment_photo) {
 		EstablishmentEntity establishment = searchEstablishment(name);
 		
 		if(establishment != null) {
-			return new Response(false, null);
+			return new OHResponse(false, null);
 		}
 		
 		String photos = establishment_photo.toString();
@@ -55,7 +55,7 @@ public class EstablecimientosDAO extends DAOBase {
 		//RequestEntity request = new RequestEntity(establishment, 1);
 		
 		
-		return new Response(true, null);
+		return new OHResponse(true, null);
 	}
 
 }

@@ -1,6 +1,7 @@
 package com.uade.rest.resources;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -10,8 +11,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
- import com.uade.ejb.dto.EstablecimientoDto;
- import com.uade.ejb.dto.Response;
+import com.uade.ejb.dto.EstablecimientoDto;
+ import com.uade.ejb.dto.OHResponse;
 // import com.uade.ejb.dto.busqueda.BusquedaHotel;
 import com.uade.ejb.services.PWService;
 
@@ -26,13 +27,12 @@ public class EstablecimientosResource {
     @GET
     @Path("/")
     @Produces("application/json")
-    public Response getAllEstablishments() {
-        Response response = null;
+    public ArrayList<EstablecimientoDto> getAllEstablishments() {
+    	ArrayList<EstablecimientoDto> response = null;
         try {
         	response = service.GetEstablecimientos();
         } catch (Exception e) {
             e.printStackTrace();
-            response = new Response(false, e.getMessage());
         }
         return response;
     }

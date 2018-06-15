@@ -10,7 +10,7 @@ import javax.persistence.EntityTransaction;
 
 import com.uade.ejb.dto.EstablecimientoDto;
 import com.uade.ejb.dto.OfertaDto;
-import com.uade.ejb.dto.Response;
+import com.uade.ejb.dto.OHResponse;
 import com.uade.ejb.dto.ServicioDto;
 import com.uade.ejb.entities.EstablishmentEntity;
 import com.uade.ejb.entities.OfferEntity;
@@ -45,14 +45,14 @@ public class OfertasDAO extends DAOBase {
 		return ofertas;
 	}
 
-	public Response CreateNewOffer(String nombre_establecimiento, String nombre, Date fechaDesde, Date fechaHasta, int cuota, int canitdad, Collection<ServicioDto> servicios, int estado) {
+	public OHResponse CreateNewOffer(String nombre_establecimiento, String nombre, Date fechaDesde, Date fechaHasta, int cuota, int canitdad, Collection<ServicioDto> servicios, int estado) {
 		if (!ValidateOffer(nombre_establecimiento, nombre, fechaDesde, fechaHasta, cuota, canitdad, servicios)) {
-			return new Response(false, null);
+			return new OHResponse(false, null);
 		}
 		
 		EstablishmentEntity establishment = searchEstablishment(nombre_establecimiento);
 		if(establishment == null) {
-			return new Response(false, null);
+			return new OHResponse(false, null);
 		}
 		
 		ServiciosDAO servicioDAO = new ServiciosDAO();
@@ -70,10 +70,10 @@ public class OfertasDAO extends DAOBase {
 			em.persist(offer);
 			transaction.commit();
 			em.close();
-			return new Response(true, null);	
+			return new OHResponse(true, null);	
 		}
 		
-		return new Response(false, null);
+		return new OHResponse(false, null);
 	}
 	
 	private boolean ValidateOffer(String nombre_establecimiento, String nombre, Date fechaDesde, Date fechaHasta, int cuota, int canitdad, Collection<ServicioDto> servicios) {

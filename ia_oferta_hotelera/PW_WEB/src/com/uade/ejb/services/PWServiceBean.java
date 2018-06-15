@@ -21,7 +21,7 @@ import com.uade.ejb.dto.EstablecimientoDto;
 import com.uade.ejb.dto.EstablecimientoServicioDto;
 import com.uade.ejb.dto.HotelDto;
 import com.uade.ejb.dto.OfertaDto;
-import com.uade.ejb.dto.Response;
+import com.uade.ejb.dto.OHResponse;
 import com.uade.ejb.dto.ServicioDto;
 import com.uade.ejb.dto.busqueda.BusquedaHotel;
 import com.uade.ejb.dto.busqueda.BusquedaPaquete;
@@ -54,13 +54,13 @@ public class PWServiceBean implements PWService {
 //    }
 //    
     @Override
-    public Response GetEstablecimientos() {
+    public ArrayList<EstablecimientoDto> GetEstablecimientos() {
     	// Collection<EstablecimientoDto> establecimientos = establecimientosDAO.GetEstablecimientos();
-    	Collection<EstablecimientoDto> establecimientos = new ArrayList<EstablecimientoDto>();
+    	ArrayList<EstablecimientoDto> establecimientos = new ArrayList<EstablecimientoDto>();
     	EstablecimientoDto e = new EstablecimientoDto();
     	e.nombre = "Mi nuevo Hotel";
     	establecimientos.add(e);
-        return new Response(true, establecimientos);
+        return establecimientos;
     }
 //    
 //    @Override
@@ -68,11 +68,15 @@ public class PWServiceBean implements PWService {
 //    	return establecimientosDAO.CreateNewEstablishment(establecimiento.nombre, establecimiento.direccion, establecimiento.fotosEstablecimiento);
 //    }
 //    
-//    @Override
-//    public Response ListOffers() {
-//    	Collection<OfertaDto> ofertas = ofertasDAO.GetAllOffers();
-//        return new Response(true, ofertas);
-//    }
+    @Override
+    public ArrayList<OfertaDto> ListOffers() {
+    	// Collection<OfertaDto> ofertas = ofertasDAO.GetAllOffers();
+    	ArrayList<OfertaDto> ofertas = new ArrayList<OfertaDto>();
+    	OfertaDto e = new OfertaDto();
+    	e.nombre = "Oferta nueva!";
+    	ofertas.add(e);
+        return ofertas;
+    }
 //    
 //    @Override 
 //    public Response FormNewOffer() {

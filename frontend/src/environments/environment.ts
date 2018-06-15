@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  apiUrl: '/servicios/v1',
+  apiUrl: 'OH_BACKEND/rest',
 };
