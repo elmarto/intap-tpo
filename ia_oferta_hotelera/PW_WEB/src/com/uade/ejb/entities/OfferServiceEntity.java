@@ -2,7 +2,7 @@ package com.uade.ejb.entities;
 
 import javax.persistence.*;
 
-@Table(name = "offer_service")
+//@Table(name = "offer_service")
 public class OfferServiceEntity {
 	@Column(name = "id_service")
 	private int idService;

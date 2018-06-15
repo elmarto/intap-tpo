@@ -10,7 +10,7 @@ import javax.persistence.Table;
 import com.uade.ejb.dto.EstablecimientoDto;
 import com.uade.ejb.dto.OfertaDto;
 
-@Table(name = "offer")
+//@Table(name = "offer")
 public class OfferEntity {
 	@Column(name ="id")
 	public int id;

@@ -5,45 +5,25 @@ import javax.persistence.*;
 @Entity
 @Table(name = "establishment")
 public class EstablishmentEntity {
-	@Column(name = "id")
+	@Id
 	public int id;
-    public HotelEntity hotel;
-    @Column(name = "idhotel")    
+	@Column(name = "id_hotel")    
 	public int idHotel;
-    @Column(name = "name")
+	public String uid;
 	public String name;
-    @Column(name = "address")
 	public String address;
-    @Column(name = "establishmentphoto")
+	public int stars;
+	@Column(name = "establishment_photo")   
 	public String establishmentPhoto;
-    @Column(name = "uid")
-    public String uid;
-    @Column(name = "city")
-    public String city;
-    @Column(name = "status")
-    public String status;
-    @Column(name = "stars")
-    public int stars;
+    // public String city;
 	
-	public EstablishmentEntity(HotelEntity hotel, 
+	public EstablishmentEntity( 
 			String name, String address, 
 			String establishmentPhoto)
 	{
-		this.hotel = hotel;
 		this.name = name;
 		this.address = address;
 		this.establishmentPhoto = establishmentPhoto;
-	}
-	
-	public void setHotel(HotelEntity hotel)
-	{
-		this.hotel = hotel;
-		this.idHotel = hotel.getId();
-	}
-	
-	public HotelEntity getHotel()
-	{
-		return this.hotel;
 	}
 	
 	public void setName(String name) 
@@ -92,19 +72,11 @@ public class EstablishmentEntity {
 		this.uid = uid;
 	}
 
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
+//	public String getCity() {
+//		return city;
+//	}
+//
+//	public void setCity(String city) {
+//		this.city = city;
+//	}
 }

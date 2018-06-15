@@ -8,6 +8,7 @@ import java.util.Collection;
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import com.uade.ejb.dao.Destinos;
 import com.uade.ejb.dao.EstablecimientosDAO;
@@ -30,9 +31,8 @@ import com.uade.ejb.dto.reserva.ReservaPaquete;
 
 @Stateless
 public class PWServiceBean implements PWService {
-
-//    @PersistenceContext(unitName = "PW")
-//    private EntityManager em;
+	@PersistenceContext(unitName ="PW")
+    private EntityManager em;
 
     private EstablecimientosDAO establecimientosDAO;
 //    private HotelDAO hotelDAO;
@@ -41,7 +41,7 @@ public class PWServiceBean implements PWService {
 
     @PostConstruct
     public void init() {
-//        establecimientosDAO = new EstablecimientosDAO(em);
+        establecimientosDAO = new EstablecimientosDAO(em);
 //        hotelDAO = new HotelDAO(em);
 //        ofertasDAO = new OfertasDAO(em);
         
@@ -55,11 +55,12 @@ public class PWServiceBean implements PWService {
 //    
     @Override
     public ArrayList<EstablecimientoDto> GetEstablecimientos() {
-    	// Collection<EstablecimientoDto> establecimientos = establecimientosDAO.GetEstablecimientos();
-    	ArrayList<EstablecimientoDto> establecimientos = new ArrayList<EstablecimientoDto>();
-    	EstablecimientoDto e = new EstablecimientoDto();
-    	e.nombre = "Mi nuevo Hotel";
-    	establecimientos.add(e);
+//    	ArrayList<EstablecimientoDto> establecimientos = new ArrayList<EstablecimientoDto>();
+//    	EstablecimientoDto e = new EstablecimientoDto();
+//    	e.nombre = "Mi nuevo Hotel";
+//    	establecimientos.add(e);
+
+		ArrayList<EstablecimientoDto> establecimientos = (ArrayList<EstablecimientoDto>) establecimientosDAO.GetEstablecimientos();
         return establecimientos;
     }
 //    

@@ -22,7 +22,6 @@ public class EstablecimientosDAO extends DAOBase {
 		List<EstablishmentEntity> establishments = getEstablecimientos();
 		Collection<EstablecimientoDto> establecimientos = new ArrayList<EstablecimientoDto>();
 		
-		
 		for (Iterator<EstablishmentEntity> i = establishments.iterator(); i.hasNext();) {
 			EstablishmentEntity item = i.next();
 			EstablecimientoDto establecimiento = new EstablecimientoDto();
@@ -44,7 +43,7 @@ public class EstablecimientosDAO extends DAOBase {
 		}
 		
 		String photos = establishment_photo.toString();
-		establishment = new EstablishmentEntity(null, name, address, photos);
+		establishment = new EstablishmentEntity(name, address, photos);
 		EntityTransaction transaction = em.getTransaction(); 
 		transaction.begin();
 		em.persist(establishment);
