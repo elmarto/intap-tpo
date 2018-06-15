@@ -14,10 +14,6 @@ import com.uade.ejb.dto.Response;
 
 public class EstablecimientosDAO extends DAOBase {
 
-	public EstablecimientosDAO(EntityManager em) {
-		super(em);
-	}
-	
 	public Collection<EstablecimientoDto> GetEstablecimientos() {
 		List<EstablishmentEntity> establishments = getEstablecimientos();
 		Collection<EstablecimientoDto> establecimientos = new ArrayList<EstablecimientoDto>();
@@ -45,11 +41,7 @@ public class EstablecimientosDAO extends DAOBase {
 		
 		String photos = establishment_photo.toString();
 		establishment = new EstablishmentEntity(name, address, photos);
-		EntityTransaction transaction = em.getTransaction(); 
-		transaction.begin();
-		em.persist(establishment);
-		transaction.commit();
-		em.close();
+		guardar(establishment);
 		
 		//Request a Backoffice
 		//RequestEntity request = new RequestEntity(establishment, 1);

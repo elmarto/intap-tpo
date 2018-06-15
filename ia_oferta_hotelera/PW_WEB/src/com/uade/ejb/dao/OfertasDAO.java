@@ -16,10 +16,6 @@ import com.uade.ejb.entities.EstablishmentEntity;
 import com.uade.ejb.entities.OfferEntity;
 
 public class OfertasDAO extends DAOBase {
-
-	public OfertasDAO(EntityManager em) {
-		super(em);
-	}
 	
 	public Collection<OfertaDto> GetAllOffers() {
 		Collection<OfferEntity> offers = getOffers();
@@ -63,13 +59,8 @@ public class OfertasDAO extends DAOBase {
 		
 		if(serviciosValidos) {
 			OfferEntity offer = new OfferEntity(establishment, nombre, fechaHasta, fechaHasta, estado, null);
-			// OfferEntity offer = new OfferEntity(establishment, nombre, fechaDesde, fechaHasta, canitdad, (OfferServiceEntity) servicios);
-			
-			EntityTransaction transaction = em.getTransaction(); 
-			transaction.begin();
-			em.persist(offer);
-			transaction.commit();
-			em.close();
+			// OfferEntity offer = new OfferEntity(establishment, nombre, fechaDesde, fechaHasta, canitdad, (OfferServiceEntity) servicios);			
+			guardar(offer);
 			return new Response(true, null);	
 		}
 		

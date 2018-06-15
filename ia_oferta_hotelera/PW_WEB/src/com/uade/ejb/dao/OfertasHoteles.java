@@ -19,10 +19,6 @@ import com.uade.ejb.entities.HotelEntity;
 
 public class OfertasHoteles extends DAOBase {
 
-    public OfertasHoteles(EntityManager em) {
-        super(em);
-    }
-
     public Response findByBusqueda(BusquedaHotel busquedaHotel) {
         Response response = null;
 //        try {

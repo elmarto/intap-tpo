@@ -2,24 +2,67 @@ package com.uade.ejb.dao;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
-import javax.persistence.Query;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+
 import com.uade.ejb.entities.EstablishmentEntity;
 import com.uade.ejb.entities.HotelEntity;
 import com.uade.ejb.entities.OfferEntity;
 
-public class DAOBase {
-    protected EntityManager em;
+import com.uade.ejb.hibernate.HibernateUtil;
 
-	public DAOBase(EntityManager em) {
-        this.em = em;
+public class DAOBase {
+	protected static SessionFactory sf = null;
+	protected Session s;
+
+	public DAOBase() {
+		sf = HibernateUtil.getSessionFactory();
     }
+	
+	public Session getSession() {
+		if (s == null || s.isOpen() == false) {
+			s = sf.openSession();
+		}
+		return s;
+	}
+	
+	public void guardar(Object obj) {
+		s = getSession();
+		s.beginTransaction();
+		s.persist(obj);
+		s.getTransaction().commit();
+		s.flush();
+		s.close();
+	}
+
+	public void saveOrUpdate(Object obj) {
+		Session s = getSession();
+		s.saveOrUpdate(obj);
+		s.close();
+	}
+	
+	public Object buscar(String className, String campo, String id) {
+		try {
+			Session s = getSession();
+			return s.createQuery(
+					"from " + className + " s where s." + campo + " = ?")
+					.setString(0, id).list().get(0);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			s.close();
+		}
+		return null;
+	}	
 
     protected List<EstablishmentEntity> getEstablecimientos() {
-        Query query = em.createQuery("from EstablishmentEntity");
+        org.hibernate.Query query = s.createQuery("from EstablishmentEntity");
         try {
-        	List<EstablishmentEntity> establishments = query.getResultList();
+        	List<EstablishmentEntity> establishments = query.list();
         	return establishments;
         }
         catch(NoResultException e) {
@@ -28,22 +71,15 @@ public class DAOBase {
     }
     
     protected EstablishmentEntity searchEstablishment(String name) {
-    	Query query = em.createQuery("FROM Establishment h where h.name = :name");
-    	query.setParameter("name", name);
-    	try {
-    		return (EstablishmentEntity) query.getSingleResult();    		
-    	}
-    	catch(NoResultException e) {
-    		return null;
-    	}
+		return (EstablishmentEntity) buscar("Establishment", "name", name);    		
     }
     
     protected HotelEntity searchUserHotel(String email, String pass) {
-    	Query query = em.createQuery("FROM HOTEL h where h.email = :email and h.pass = :pass");
+    	Query query = s.createQuery("FROM HOTEL h where h.email = :email and h.pass = :pass");
     	query.setParameter("email", email);
     	query.setParameter("pass", pass);
     	try {
-    		HotelEntity hotel = (HotelEntity) query.getSingleResult();
+    		HotelEntity hotel = (HotelEntity) query.uniqueResult();
     		
     		if(hotel.userVerification(email, pass)) {
     			return hotel;
@@ -57,9 +93,9 @@ public class DAOBase {
     }
     
     protected List<OfferEntity> getOffers() {
-        Query query = em.createQuery("FROM Offer");
+        Query query = s.createQuery("FROM Offer");
         try {
-        	List<OfferEntity> offers = query.getResultList();
+        	List<OfferEntity> offers = query.list();
         	return offers;
         }
         catch(NoResultException e) {

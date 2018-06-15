@@ -18,10 +18,6 @@ import com.uade.ejb.dto.busqueda.BusquedaPaquete;
 
 public class OfertasPaquetes extends DAOBase {
 
-    public OfertasPaquetes(EntityManager em) {
-        super(em);
-    }
-
     public Response findByBusqueda(BusquedaPaquete busquedaPaquete) {
         Response response = null;
 //        try {

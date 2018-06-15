@@ -10,7 +10,6 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
-import com.uade.ejb.dao.Destinos;
 import com.uade.ejb.dao.EstablecimientosDAO;
 import com.uade.ejb.dao.HotelDAO;
 import com.uade.ejb.dao.OfertasDAO;
@@ -31,8 +30,6 @@ import com.uade.ejb.dto.reserva.ReservaPaquete;
 
 @Stateless
 public class PWServiceBean implements PWService {
-	@PersistenceContext(unitName ="PW")
-    private EntityManager em;
 
     private EstablecimientosDAO establecimientosDAO;
 //    private HotelDAO hotelDAO;
@@ -41,7 +38,7 @@ public class PWServiceBean implements PWService {
 
     @PostConstruct
     public void init() {
-        establecimientosDAO = new EstablecimientosDAO(em);
+        establecimientosDAO = new EstablecimientosDAO();
 //        hotelDAO = new HotelDAO(em);
 //        ofertasDAO = new OfertasDAO(em);
         

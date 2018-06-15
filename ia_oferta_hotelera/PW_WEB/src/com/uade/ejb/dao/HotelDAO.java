@@ -6,10 +6,6 @@ import com.uade.ejb.dto.HotelDto;
 import com.uade.ejb.entities.HotelEntity;
 
 public class HotelDAO extends DAOBase {
-
-	public HotelDAO(EntityManager em) {
-		super(em);
-	}
 	
 	public HotelDto Login(String email, String pass) {
 		HotelEntity hotel = searchUserHotel(email, pass);

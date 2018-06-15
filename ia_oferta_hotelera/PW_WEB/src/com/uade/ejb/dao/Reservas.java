@@ -19,10 +19,6 @@ import com.uade.ejb.dto.reserva.ReservaPaquete;
 
 public class Reservas extends DAOBase {
 
-    public Reservas(EntityManager em) {
-        super(em);
-    }
-
     public Response reservarHotel(ReservaHotel reserva) {
         Response response = null;
 //        try {
