@@ -1,10 +1,10 @@
 package com.uade.ejb.dto;
 
-public class Response {
+public class OHResponse {
     private boolean estado;
     private Object respuesta;
 
-    public Response(boolean estado, Object respuesta) {
+    public OHResponse(boolean estado, Object respuesta) {
         this.estado = estado;
         this.respuesta = respuesta;
     }

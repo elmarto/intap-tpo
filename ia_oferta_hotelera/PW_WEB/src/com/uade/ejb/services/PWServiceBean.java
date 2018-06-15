@@ -21,7 +21,7 @@ import com.uade.ejb.dto.EstablecimientoDto;
 import com.uade.ejb.dto.EstablecimientoServicioDto;
 import com.uade.ejb.dto.HotelDto;
 import com.uade.ejb.dto.OfertaDto;
-import com.uade.ejb.dto.Response;
+import com.uade.ejb.dto.OHResponse;
 import com.uade.ejb.dto.ServicioDto;
 import com.uade.ejb.dto.busqueda.BusquedaHotel;
 import com.uade.ejb.dto.busqueda.BusquedaPaquete;
@@ -51,20 +51,37 @@ public class PWServiceBean implements PWService {
 //    }
 //    
     @Override
-    public Response GetEstablecimientos() {
-    	Collection<EstablecimientoDto> establecimientos = establecimientosDAO.GetEstablecimientos();
-        return new Response(true, establecimientos);
+    public ArrayList<EstablecimientoDto> GetEstablecimientos() {
+//    	ArrayList<EstablecimientoDto> establecimientos = new ArrayList<EstablecimientoDto>();
+//    	EstablecimientoDto e = new EstablecimientoDto();
+//    	e.nombre = "Mi nuevo Hotel";
+//    	establecimientos.add(e);
+
+		ArrayList<EstablecimientoDto> establecimientos = (ArrayList<EstablecimientoDto>) establecimientosDAO.GetEstablecimientos();
+        return establecimientos;
     }
-//    
+    
 //    @Override
-//    public Response CreateNewEstablishment(EstablecimientoDto establecimiento) {
+//    public EstablecimientoDto CreateNewEstablishment(EstablecimientoDto establecimiento) {
 //    	return establecimientosDAO.CreateNewEstablishment(establecimiento.nombre, establecimiento.direccion, establecimiento.fotosEstablecimiento);
 //    }
-//    
+    
+    @Override
+    public ArrayList<OfertaDto> ListOffers() {
+    	// Collection<OfertaDto> ofertas = ofertasDAO.GetAllOffers();
+    	ArrayList<OfertaDto> ofertas = new ArrayList<OfertaDto>();
+    	OfertaDto e = new OfertaDto();
+    	e.nombre = "Oferta nueva!";
+    	ofertas.add(e);
+        return ofertas;
+    }
+    
 //    @Override
-//    public Response ListOffers() {
-//    	Collection<OfertaDto> ofertas = ofertasDAO.GetAllOffers();
-//        return new Response(true, ofertas);
+//    public OfertaDto createNewOffer(String nombre_establecimiento, String nombre, Date fechaDesde, Date fechaHasta, int cuota, int canitdad, Collection<ServicioDto> servicios, int estado) {
+//    	// return ofertasDAO.CreateNewOffer(nombre_establecimiento, nombre, fechaDesde, fechaHasta, cuota, canitdad, servicios, estado);
+//    	OfertaDto o = new OfertaDto();
+//    	o.nombre = "Oferta recien creada!";
+//    	return o;
 //    }
 //    
 //    @Override 
@@ -72,10 +89,5 @@ public class PWServiceBean implements PWService {
 //    	Collection<EstablecimientoDto> establecimientos = establecimientosDAO.GetEstablecimientos();
 //    	Collection<ServicioDto> servicios = serviciosDAO.getServices();
 //    	return new Response(true, new EstablecimientoServicioDto(establecimientos, servicios));
-//    }
-//    
-//    @Override
-//    public Response createNewOffer(String nombre_establecimiento, String nombre, Date fechaDesde, Date fechaHasta, int cuota, int canitdad, Collection<ServicioDto> servicios, int estado) {
-//    	return ofertasDAO.CreateNewOffer(nombre_establecimiento, nombre, fechaDesde, fechaHasta, cuota, canitdad, servicios, estado);
 //    }
 }

@@ -16,6 +16,6 @@ export class EstablecimientoListComponent {
     public establecimientosService: EstablecimientosService
   ) {
     this.establecimientosService.all()
-      .subscribe(response => this.establecimientos = response.establecimientos);
+      .subscribe(response => this.establecimientos = response);
   }
 }

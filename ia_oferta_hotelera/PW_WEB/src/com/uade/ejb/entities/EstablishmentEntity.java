@@ -2,28 +2,22 @@ package com.uade.ejb.entities;
 
 import javax.persistence.*;
 
+import com.uade.ejb.dto.EstablecimientoDto;
+
 @Entity
-@Table(name = "oferta_hotelera.establishment")
+@Table(name = "establishment")
 public class EstablishmentEntity {
 	@Id
-	@Column(name = "id")
 	public int id;
-    @Column(name = "idhotel")    
+	@Column(name = "id_hotel")    
 	public int idHotel;
-    @Column(name = "name")
+	public String uid;
 	public String name;
-    @Column(name = "address")
 	public String address;
-    @Column(name = "establishmentphoto")
+	public int stars;
+	@Column(name = "establishment_photo")   
 	public String establishmentPhoto;
-    @Column(name = "uid")
-    public String uid;
-    @Column(name = "city")
-    public String city;
-    @Column(name = "status")
-    public String status;
-    @Column(name = "stars")
-    public int stars;
+    // public String city;
 	
 	public EstablishmentEntity( 
 			String name, String address, 
@@ -80,19 +74,21 @@ public class EstablishmentEntity {
 		this.uid = uid;
 	}
 
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
+//	public String getCity() {
+//		return city;
+//	}
+//
+//	public void setCity(String city) {
+//		this.city = city;
+//	}
+	
+	public EstablecimientoDto getDto() {
+		EstablecimientoDto establecimiento = new EstablecimientoDto();
+		establecimiento.direccion = this.address;
+		establecimiento.id = this.idHotel;
+		establecimiento.nombre = this.name;
+		establecimiento.uid = this.uid;
+		// establecimiento.fotosEstablecimiento.add(this.establishmentPhoto);
+		return establecimiento;
 	}
 }

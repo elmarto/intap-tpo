@@ -9,7 +9,7 @@ import javax.persistence.Query;
 import com.uade.ejb.backoffice.Backoffice;
 import com.uade.ejb.dto.DetallePaquete;
 import com.uade.ejb.dto.MedioPago;
-import com.uade.ejb.dto.Response;
+import com.uade.ejb.dto.OHResponse;
 import com.uade.ejb.dto.busqueda.BusquedaPaquete;
 //import com.uade.ejb.dto.Oferta;
 //import com.uade.ejb.entities.MedioPagoEntity;
@@ -18,8 +18,8 @@ import com.uade.ejb.dto.busqueda.BusquedaPaquete;
 
 public class OfertasPaquetes extends DAOBase {
 
-    public Response findByBusqueda(BusquedaPaquete busquedaPaquete) {
-        Response response = null;
+    public OHResponse findByBusqueda(BusquedaPaquete busquedaPaquete) {
+        OHResponse response = null;
 //        try {
 //            Query query = em.createQuery("from OfertaEntity o"
 //                    + " where o.tipo = 'PAQUETE'"

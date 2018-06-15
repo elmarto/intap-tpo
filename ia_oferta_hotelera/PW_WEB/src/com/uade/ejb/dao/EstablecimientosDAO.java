@@ -10,7 +10,7 @@ import javax.persistence.EntityTransaction;
 import com.uade.ejb.entities.EstablishmentEntity;
 import com.uade.ejb.entities.RequestEntity;
 import com.uade.ejb.dto.EstablecimientoDto;
-import com.uade.ejb.dto.Response;
+import com.uade.ejb.dto.OHResponse;
 
 public class EstablecimientosDAO extends DAOBase {
 
@@ -18,21 +18,14 @@ public class EstablecimientosDAO extends DAOBase {
 		List<EstablishmentEntity> establishments = getEstablecimientos();
 		Collection<EstablecimientoDto> establecimientos = new ArrayList<EstablecimientoDto>();
 		
-		
 		for (Iterator<EstablishmentEntity> i = establishments.iterator(); i.hasNext();) {
 			EstablishmentEntity item = i.next();
-			EstablecimientoDto establecimiento = new EstablecimientoDto();
-			establecimiento.direccion = item.address;
-			establecimiento.id = item.idHotel;
-			establecimiento.nombre = item.name;
-			establecimiento.uid = item.uid;
-			establecimiento.fotosEstablecimiento.add(item.establishmentPhoto);
-		    establecimientos.add(establecimiento);
+		    establecimientos.add(item.getDto());
 		}
 		return establecimientos;
 	}
 	
-	public Response CreateNewEstablishment(String name, String address, Collection<String> establishment_photo) {
+	public EstablecimientoDto CreateNewEstablishment(String name, String address, Collection<String> establishment_photo) {
 		EstablishmentEntity establishment = searchEstablishment(name);
 		
 		if(establishment != null) {

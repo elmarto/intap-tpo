@@ -62,7 +62,7 @@ public class DAOBase {
     protected List<EstablishmentEntity> getEstablecimientos() {
         org.hibernate.Query query = s.createQuery("from EstablishmentEntity");
         try {
-        	List<EstablishmentEntity> establishments = query.list();
+        	List<EstablishmentEntity> establishments = (List<EstablishmentEntity>) query.list();
         	return establishments;
         }
         catch(NoResultException e) {

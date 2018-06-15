@@ -12,7 +12,7 @@ export class OfertasService  {
     private http: Http
   ) {}
 
-  all(): Observable<{ ofertas: Oferta[] }> {
+  all(): Observable<Oferta[]> {
     const establecimiento: Establecimiento = {
       id: 1,
       uid: 'asdfasdfasd',
@@ -43,11 +43,11 @@ export class OfertasService  {
       servicios: 'WIFI, Parking, Desayuno, Pileta, Baño Privado'
    }
    ;
-    const responseMock: { ofertas: Oferta[] } = {ofertas: [oferta, oferta]};
-    // return this.http.get(`${env.apiUrl}/establecimientos`).pipe(
-    return this.http.get(`http://calapi.inadiutorium.cz/api/v0/en/calendars`).pipe(
-      // map(response => response.json()),
-      map(response => responseMock),
+    const responseMock: Oferta[] = [oferta, oferta];
+    return this.http.get(`${env.apiUrl}/ofertas`).pipe(
+    // return this.http.get(`http://calapi.inadiutorium.cz/api/v0/en/calendars`).pipe(
+      map(response => response.json()),
+      // map(response => responseMock),
       catchError(this.handleError)
     );
   }

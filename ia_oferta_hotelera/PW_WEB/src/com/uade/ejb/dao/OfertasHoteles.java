@@ -9,7 +9,7 @@ import javax.persistence.Query;
 import com.uade.ejb.backoffice.Backoffice;
 import com.uade.ejb.dto.DetalleHotel;
 import com.uade.ejb.dto.MedioPago;
-import com.uade.ejb.dto.Response;
+import com.uade.ejb.dto.OHResponse;
 import com.uade.ejb.dto.busqueda.BusquedaHotel;
 import com.uade.ejb.entities.HotelEntity;
 //import com.uade.ejb.dto.Oferta;
@@ -19,8 +19,8 @@ import com.uade.ejb.entities.HotelEntity;
 
 public class OfertasHoteles extends DAOBase {
 
-    public Response findByBusqueda(BusquedaHotel busquedaHotel) {
-        Response response = null;
+    public OHResponse findByBusqueda(BusquedaHotel busquedaHotel) {
+        OHResponse response = null;
 //        try {
 //            Query query = em.createQuery("from OfertaEntity o"
 //                    + " where o.tipo = 'HOTEL'"
@@ -65,8 +65,8 @@ public class OfertasHoteles extends DAOBase {
         return response;
     }
 
-    public Response getDetalle(int codigo) {
-        Response response = null;
+    public OHResponse getDetalle(int codigo) {
+        OHResponse response = null;
 //        try {
 //            OfertaEntity ofertaEntity = getOfertaHotel(codigo);
 //            if (ofertaEntity != null) {

@@ -16,7 +16,7 @@ export class OfertaListComponent {
     public ofertasService: OfertasService
   ) {
     this.ofertasService.all()
-      .subscribe(response => this.ofertas = response.ofertas);
+      .subscribe(response => this.ofertas = response);
   }
 
 }
