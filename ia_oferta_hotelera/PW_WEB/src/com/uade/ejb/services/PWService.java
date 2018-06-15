@@ -14,7 +14,7 @@ public interface PWService {
 
     public ArrayList<EstablecimientoDto> GetEstablecimientos();
 //    public OHResponse Login(String email, String pass);
-//    public OHResponse CreateNewEstablishment(EstablecimientoDto establecimiento);
+    // public EstablecimientoDto CreateNewEstablishment(EstablecimientoDto establecimiento);
     public ArrayList<OfertaDto> ListOffers();
 //    public OfertaDto createNewOffer(String nombre_establecimiento, String nombre, Date fechaDesde, Date fechaHasta, int cuota, int canitdad, Collection<ServicioDto> servicios, int estado);
 //    public OHResponse FormNewOffer();

@@ -63,12 +63,12 @@ public class PWServiceBean implements PWService {
 		ArrayList<EstablecimientoDto> establecimientos = (ArrayList<EstablecimientoDto>) establecimientosDAO.GetEstablecimientos();
         return establecimientos;
     }
-//    
+    
 //    @Override
-//    public Response CreateNewEstablishment(EstablecimientoDto establecimiento) {
+//    public EstablecimientoDto CreateNewEstablishment(EstablecimientoDto establecimiento) {
 //    	return establecimientosDAO.CreateNewEstablishment(establecimiento.nombre, establecimiento.direccion, establecimiento.fotosEstablecimiento);
 //    }
-//    
+    
     @Override
     public ArrayList<OfertaDto> ListOffers() {
     	// Collection<OfertaDto> ofertas = ofertasDAO.GetAllOffers();

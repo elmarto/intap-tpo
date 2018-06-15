@@ -43,4 +43,13 @@ public class EstablecimientosResource {
 //    public Response CreateNewEstablishment(@QueryParam("establecimiento") EstablecimientoDto establecimiento) {
 //        return service.CreateNewEstablishment(establecimiento);
 //    }
+
+//	  @GET
+//	  @Path("/crear")
+//	  @Produces("application/json")
+//	  public EstablecimientoDto CreateNewEstablishment() {
+//		  EstablecimientoDto e = new EstablecimientoDto();
+//		  e.nombre = "Mi nuevo nuevo establecimiento";
+//	      return service.CreateNewEstablishment(e);
+//	  }
 }

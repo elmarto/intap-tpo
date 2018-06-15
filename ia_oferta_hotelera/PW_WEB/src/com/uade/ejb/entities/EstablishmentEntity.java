@@ -2,6 +2,8 @@ package com.uade.ejb.entities;
 
 import javax.persistence.*;
 
+import com.uade.ejb.dto.EstablecimientoDto;
+
 @Entity
 @Table(name = "establishment")
 public class EstablishmentEntity {
@@ -79,4 +81,14 @@ public class EstablishmentEntity {
 //	public void setCity(String city) {
 //		this.city = city;
 //	}
+	
+	public EstablecimientoDto getDto() {
+		EstablecimientoDto establecimiento = new EstablecimientoDto();
+		establecimiento.direccion = this.address;
+		establecimiento.id = this.idHotel;
+		establecimiento.nombre = this.name;
+		establecimiento.uid = this.uid;
+		// establecimiento.fotosEstablecimiento.add(this.establishmentPhoto);
+		return establecimiento;
+	}
 }

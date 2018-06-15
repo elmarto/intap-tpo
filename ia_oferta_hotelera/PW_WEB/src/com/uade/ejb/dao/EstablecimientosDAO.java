@@ -24,37 +24,34 @@ public class EstablecimientosDAO extends DAOBase {
 		
 		for (Iterator<EstablishmentEntity> i = establishments.iterator(); i.hasNext();) {
 			EstablishmentEntity item = i.next();
-			EstablecimientoDto establecimiento = new EstablecimientoDto();
-			establecimiento.direccion = item.address;
-			establecimiento.id = item.idHotel;
-			establecimiento.nombre = item.name;
-			establecimiento.uid = item.uid;
-			establecimiento.fotosEstablecimiento.add(item.establishmentPhoto);
-		    establecimientos.add(establecimiento);
+		    establecimientos.add(item.getDto());
 		}
 		return establecimientos;
 	}
 	
-	public OHResponse CreateNewEstablishment(String name, String address, Collection<String> establishment_photo) {
-		EstablishmentEntity establishment = searchEstablishment(name);
-		
-		if(establishment != null) {
-			return new OHResponse(false, null);
-		}
-		
-		String photos = establishment_photo.toString();
-		establishment = new EstablishmentEntity(name, address, photos);
-		EntityTransaction transaction = em.getTransaction(); 
-		transaction.begin();
-		em.persist(establishment);
-		transaction.commit();
-		em.close();
-		
-		//Request a Backoffice
-		//RequestEntity request = new RequestEntity(establishment, 1);
-		
-		
-		return new OHResponse(true, null);
-	}
+//	public EstablecimientoDto CreateNewEstablishment(String name, String address, Collection<String> establishment_photo) {
+//		EstablishmentEntity establishment = null;
+////		establishment = searchEstablishment(name);
+////		
+////		if(establishment != null) {
+////			return null;
+////		}
+//		
+//		
+//		
+//		// String photos = establishment_photo.toString();
+//		establishment = new EstablishmentEntity(name, address, "");
+//		EntityTransaction transaction = em.getTransaction(); 
+//		transaction.begin();
+//		em.persist(establishment);
+//		transaction.commit();
+//		em.close();
+//		
+//		EstablecimientoDto establecimientoDto = new EstablecimientoDto();
+//		establecimientoDto.nombre = name;
+//		establecimientoDto.direccion = address;
+//		
+//		return establecimientoDto;
+//	}
 
 }
