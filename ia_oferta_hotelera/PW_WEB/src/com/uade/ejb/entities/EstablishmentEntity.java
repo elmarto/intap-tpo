@@ -3,11 +3,11 @@ package com.uade.ejb.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "establishment")
+@Table(name = "oferta_hotelera.establishment")
 public class EstablishmentEntity {
+	@Id
 	@Column(name = "id")
 	public int id;
-    public HotelEntity hotel;
     @Column(name = "idhotel")    
 	public int idHotel;
     @Column(name = "name")
@@ -25,25 +25,13 @@ public class EstablishmentEntity {
     @Column(name = "stars")
     public int stars;
 	
-	public EstablishmentEntity(HotelEntity hotel, 
+	public EstablishmentEntity( 
 			String name, String address, 
 			String establishmentPhoto)
 	{
-		this.hotel = hotel;
 		this.name = name;
 		this.address = address;
 		this.establishmentPhoto = establishmentPhoto;
-	}
-	
-	public void setHotel(HotelEntity hotel)
-	{
-		this.hotel = hotel;
-		this.idHotel = hotel.getId();
-	}
-	
-	public HotelEntity getHotel()
-	{
-		return this.hotel;
 	}
 	
 	public void setName(String name) 

@@ -1,33 +1,23 @@
 package com.uade.ejb.dao;
 
-import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
-
-import com.uade.ejb.backoffice.Backoffice;
 import com.uade.ejb.entities.EstablishmentEntity;
 import com.uade.ejb.entities.HotelEntity;
 import com.uade.ejb.entities.OfferEntity;
 
 public class DAOBase {
-    public static final String PREFIJO_DESTINO = "DST";
-    public static final String PREFIJO_SERVICIO = "SRV";
-
-    public static final String[] MEDIOS_PAGO = new String[] {
-            "", "Tarjeta de credito", "Cheque", "Pago en destino", "MercadoPago", "PayPal"
-    };
-
     protected EntityManager em;
 
-    public DAOBase(EntityManager em) {
+	public DAOBase(EntityManager em) {
         this.em = em;
     }
 
     protected List<EstablishmentEntity> getEstablecimientos() {
-        Query query = em.createQuery("FROM Establishment");
+        Query query = em.createQuery("from EstablishmentEntity");
         try {
         	List<EstablishmentEntity> establishments = query.getResultList();
         	return establishments;

@@ -44,7 +44,7 @@ public class EstablecimientosDAO extends DAOBase {
 		}
 		
 		String photos = establishment_photo.toString();
-		establishment = new EstablishmentEntity(null, name, address, photos);
+		establishment = new EstablishmentEntity(name, address, photos);
 		EntityTransaction transaction = em.getTransaction(); 
 		transaction.begin();
 		em.persist(establishment);
