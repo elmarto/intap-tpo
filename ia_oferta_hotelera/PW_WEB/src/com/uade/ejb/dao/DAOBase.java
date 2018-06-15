@@ -19,7 +19,7 @@ public class DAOBase {
 	protected Session s;
 
 	public DAOBase() {
-		sf = HibernateUtil.getSessionFactory();
+		//sf = HibernateUtil.getSessionFactory();
     }
 	
 	public Session getSession() {
