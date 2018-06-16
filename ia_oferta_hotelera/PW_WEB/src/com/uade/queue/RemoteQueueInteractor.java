@@ -50,7 +50,7 @@ public class RemoteQueueInteractor {
         //No va con el /exported
         remoteQueueCF = (ConnectionFactory) ic.lookup("jms/RemoteConnectionFactory");
         //No va si uso directamente jms/ -> jms/queues/colaBack
-        remoteQueue = (Queue) ic.lookup("java:/jms/queue/colaBack");
+        remoteQueue = (Queue) ic.lookup("java:/jms/queue/ColaOfertaHotelera");
 
         remoteQueueConnection = remoteQueueCF.createConnection("integrados","integrados");
         remoteQueueConnection.start();
@@ -80,7 +80,6 @@ public class RemoteQueueInteractor {
 
     public static void main(String agrs[]) throws NamingException, JMSException {
         RemoteQueueInteractor remoteQInteractor = new RemoteQueueInteractor();
-       
         remoteQInteractor.sendTextMessage("Hello Puto World!");
         System.out.println("Mensaje Enviado");
         
