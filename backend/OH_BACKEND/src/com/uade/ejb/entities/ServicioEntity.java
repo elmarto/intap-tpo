@@ -1,20 +1,16 @@
 package com.uade.ejb.entities;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 //@Entity
-//@Table(name = "hotel")
-public class HotelEntity {
-
+//@Table(name = "servicios")
+public class ServicioEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", updatable = false, nullable = false)
 	private int id;
-	private String nombre;
-	//private ArrayList<Foto> fotosHotel;
+	public String nombre;
+	private TipoServicioEntity tipoServicio;
 	
 	public int getId() {
 		return id;
@@ -28,4 +24,11 @@ public class HotelEntity {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	public TipoServicioEntity getTipoServicio() {
+		return tipoServicio;
+	}
+	public void setTipoServicio(TipoServicioEntity tipoServicio) {
+		this.tipoServicio = tipoServicio;
+	}
+	
 }

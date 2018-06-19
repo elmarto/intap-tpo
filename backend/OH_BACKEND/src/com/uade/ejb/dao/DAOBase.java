@@ -3,18 +3,9 @@ package com.uade.ejb.dao;
 import java.util.List;
 
 import javax.ejb.Stateful;
-import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
-import javax.persistence.PersistenceContext;
-
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-
-import com.uade.ejb.entities.EstablishmentEntity;
-import com.uade.ejb.entities.HotelEntity;
-import com.uade.ejb.entities.OfferEntity;
+import com.uade.ejb.entities.EstablecimientoEntity;
+import com.uade.ejb.entities.OfertaHoteleraEntity;
 import com.uade.ejb.hibernate.LocalEntityManagerFactory;
 
 @Stateful
@@ -33,24 +24,13 @@ public class DAOBase {
 	}
 	
 	public Object buscar(String className, String campo, String id) {
-//		try {
-//			Session s = getSession();
-//			return s.createQuery(
-//					"from " + className + " s where s." + campo + " = ?")
-//					.setString(0, id).list().get(0);
-//
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		} finally {
-//			s.close();
-//		}
 		return null;
 	}	
 
-    protected List<EstablishmentEntity> getEstablecimientos() {
+    protected List<EstablecimientoEntity> getEstablecimientos() {
     	EntityManager entityManager = LocalEntityManagerFactory.createEntityManager();
     	entityManager.getTransaction().begin();
-        List<EstablishmentEntity> establishmentList = entityManager.createQuery("SELECT e FROM EstablishmentEntity e").getResultList();
+		List<EstablecimientoEntity> establishmentList = entityManager.createQuery("SELECT e FROM EstablecimientoEntity e").getResultList();
         entityManager.getTransaction().commit();
         entityManager.close();
         if (establishmentList == null) {
@@ -59,15 +39,15 @@ public class DAOBase {
         return establishmentList;
     }
     
-    protected EstablishmentEntity searchEstablishment(String name) {
-		return (EstablishmentEntity) buscar("Establishment", "name", name);    		
+    protected EstablecimientoEntity searchEstablishment(String name) {
+		return (EstablecimientoEntity) buscar("Establishment", "name", name);    		
     }
   
     
-    protected List<OfferEntity> getOffers() {
+    protected List<OfertaHoteleraEntity> getOffers() {
     	EntityManager entityManager = LocalEntityManagerFactory.createEntityManager();
     	entityManager.getTransaction().begin();
-        List<OfferEntity> offerList = entityManager.createQuery("SELECT e FROM OfferEntity e").getResultList();
+		List<OfertaHoteleraEntity> offerList = entityManager.createQuery("SELECT e FROM OfertaHoteleraEntity e").getResultList();
         entityManager.getTransaction().commit();
         entityManager.close();
         if (offerList == null) {

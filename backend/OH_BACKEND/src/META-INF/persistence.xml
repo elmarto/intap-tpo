@@ -7,9 +7,9 @@
 		
 		
 		<!-- INSERTAR CLASES A SER PERSISTIDAS -->
-		<class>com.uade.ejb.entities.EstablishmentEntity</class>
+		<class>com.uade.ejb.entities.EstablecimientoEntity</class>
 		<!-- <class>com.uade.ejb.entities.HotelEntity</class>
-		<class>com.uade.ejb.entities.OfferEntity</class> -->
+		<class>com.uade.ejb.entities.OfertaHoteleraEntity</class> -->
 		
 		
 		<properties>

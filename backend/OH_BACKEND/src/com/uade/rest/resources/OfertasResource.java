@@ -6,7 +6,7 @@ import javax.ejb.Stateless;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import com.uade.ejb.dto.OfertaDto;
+import com.uade.ejb.dto.OfertaHoteleraDto;
 import com.uade.ejb.services.OHService;
 
 @Path("/ofertas")
@@ -19,9 +19,9 @@ public class OfertasResource {
     @GET
     @Path("/")
     @Produces("application/json")
-    public ArrayList<OfertaDto> ListOffers() {
+    public ArrayList<OfertaHoteleraDto> ListOffers() {
 
-    	ArrayList<OfertaDto> response = null;
+    	ArrayList<OfertaHoteleraDto> response = null;
         try {
         	response = service.ListOffers();
         } catch (Exception e) {

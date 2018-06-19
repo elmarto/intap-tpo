@@ -6,15 +6,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 //@Entity
-//@Table(name = "hotel")
-public class HotelEntity {
-
+//@Table(name = "tipo_servicio")
+public class TipoServicioEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", updatable = false, nullable = false)
 	private int id;
 	private String nombre;
-	//private ArrayList<Foto> fotosHotel;
+	// private ArrayList<Servicio> servicios;
 	
 	public int getId() {
 		return id;
@@ -28,4 +27,5 @@ public class HotelEntity {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	
 }

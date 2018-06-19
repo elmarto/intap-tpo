@@ -3,22 +3,22 @@ package com.uade.ejb.services;
 import java.util.ArrayList;
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
-import com.uade.ejb.dao.EstablecimientosDAO;
+import com.uade.ejb.dao.EstablecimientoDAO;
 import com.uade.ejb.dto.EstablecimientoDto;
-import com.uade.ejb.dto.OfertaDto;
-import com.uade.ejb.entities.EstablishmentEntity;
+import com.uade.ejb.dto.OfertaHoteleraDto;
+import com.uade.ejb.entities.EstablecimientoEntity;
 
 @Stateless
 public class OHServiceBean implements OHService {
 
-    private EstablecimientosDAO establecimientosDAO;
+    private EstablecimientoDAO establecimientosDAO;
 //    private HotelDAO hotelDAO;
 //    private OfertasDAO ofertasDAO;
 //    private ServiciosDAO serviciosDAO; 
 
     @PostConstruct
     public void init() {
-        establecimientosDAO = new EstablecimientosDAO();
+        establecimientosDAO = new EstablecimientoDAO();
 //        hotelDAO = new HotelDAO(em);
 //        ofertasDAO = new OfertasDAO(em);
         
@@ -38,14 +38,14 @@ public class OHServiceBean implements OHService {
     
     @Override
     public EstablecimientoDto CreateNewEstablishment(EstablecimientoDto establecimiento) {
-    	return establecimientosDAO.CreateNewEstablishment(new EstablishmentEntity(establecimiento));
+    	return establecimientosDAO.CreateNewEstablishment(new EstablecimientoEntity(establecimiento));
     }
     
     @Override
-    public ArrayList<OfertaDto> ListOffers() {
+    public ArrayList<OfertaHoteleraDto> ListOffers() {
     	// Collection<OfertaDto> ofertas = ofertasDAO.GetAllOffers();
-    	ArrayList<OfertaDto> ofertas = new ArrayList<OfertaDto>();
-    	OfertaDto e = new OfertaDto();
+    	ArrayList<OfertaHoteleraDto> ofertas = new ArrayList<OfertaHoteleraDto>();
+    	OfertaHoteleraDto e = new OfertaHoteleraDto();
     	e.nombre = "Oferta nueva!";
     	ofertas.add(e);
         return ofertas;
