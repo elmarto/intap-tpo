@@ -1,29 +1,24 @@
 package com.uade.rest.resources;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
-
 import com.uade.ejb.dto.EstablecimientoDto;
-import com.uade.ejb.dto.OHResponse;
-import com.uade.ejb.entities.EstablishmentEntity;
-// import com.uade.ejb.dto.busqueda.BusquedaHotel;
-import com.uade.ejb.services.PWService;
+import com.uade.ejb.services.OHService;
 
-// http://myip:8080/OH_BACKEND/rest/establecimientos/
+// http://localhost:8080/OH_BACKEND/rest/establecimientos/
 @Path("/establecimientos")
 @Stateless
 public class EstablecimientosResource {
 
     @EJB
-    private PWService service;
+    private OHService service;
 
     @GET
     @Path("/")
@@ -37,20 +32,23 @@ public class EstablecimientosResource {
         }
         return response;
     }
-//
-//    @POST
-//    @Path("/")
-//    @Produces("application/json")
-//    public Response CreateNewEstablishment(@QueryParam("establecimiento") EstablecimientoDto establecimiento) {
-//        return service.CreateNewEstablishment(establecimiento);
-//    }
+    
+    @POST
+    @Path("/")
+    @Consumes("application/json")
+    @Produces("application/json")
+    public EstablecimientoDto CreateNewEstablishment(EstablecimientoDto establecimiento) {
+        return service.CreateNewEstablishment(establecimiento);
+    }
 
-	  @GET
-	  @Path("/crear")
-	  @Produces("application/json")
-	  public EstablecimientoDto CreateNewEstablishment() {
-		  EstablecimientoDto e = new EstablecimientoDto();
-		  e.nombre = "Mi nuevo nuevo establecimiento";
-	      return service.CreateNewEstablishment(e);
-	  }
+    
+    // CREAR MOCK
+	@GET
+	@Path("/crear")
+	@Produces("application/json")
+	public EstablecimientoDto CreateNewEstablishment() {
+		EstablecimientoDto e = new EstablecimientoDto();
+		e.nombre = "Mi nuevo nuevo establecimiento";
+	    return service.CreateNewEstablishment(e);
+	}
 }

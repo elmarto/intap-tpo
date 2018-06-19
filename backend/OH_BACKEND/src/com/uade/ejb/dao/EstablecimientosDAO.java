@@ -2,9 +2,11 @@ package com.uade.ejb.dao;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import com.uade.ejb.entities.EstablishmentEntity;
-import com.uade.ejb.hibernate.JPAUtility;
 import com.uade.ejb.dto.EstablecimientoDto;
 
 public class EstablecimientosDAO extends DAOBase {
@@ -13,13 +15,13 @@ public class EstablecimientosDAO extends DAOBase {
 	}
 
 	public Collection<EstablecimientoDto> GetEstablecimientos() {
-		Collection<EstablecimientoDto> establecimientos = new ArrayList<EstablecimientoDto>();
-		EstablecimientoDto dto = new EstablecimientoDto();
-		dto.nombre = "Sheraton";
-		dto.direccion = "Av. 9 de julio 235";
-		dto.uid = "121";
-		establecimientos.add(dto);
-		/*
+//		Collection<EstablecimientoDto> establecimientos = new ArrayList<EstablecimientoDto>();
+//		EstablecimientoDto dto = new EstablecimientoDto();
+//		dto.nombre = "Sheraton";
+//		dto.direccion = "Av. 9 de julio 235";
+//		dto.uid = "121";
+//		establecimientos.add(dto);
+		
 		List<EstablishmentEntity> establishments = getEstablecimientos();
 		Collection<EstablecimientoDto> establecimientos = new ArrayList<EstablecimientoDto>();
 		
@@ -27,7 +29,6 @@ public class EstablecimientosDAO extends DAOBase {
 			EstablishmentEntity item = i.next();
 		    establecimientos.add(item.getDto());
 		}
-		*/
 		return establecimientos;
 	}
 	

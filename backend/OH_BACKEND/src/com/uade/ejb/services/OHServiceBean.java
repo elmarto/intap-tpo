@@ -1,36 +1,15 @@
 package com.uade.ejb.services;
 
-import java.awt.List;
-import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Collection;
-
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
-import javax.persistence.PersistenceContext;
 import com.uade.ejb.dao.EstablecimientosDAO;
-import com.uade.ejb.dao.HotelDAO;
-import com.uade.ejb.dao.OfertasDAO;
-import com.uade.ejb.dao.OfertasHoteles;
-import com.uade.ejb.dao.OfertasPaquetes;
-import com.uade.ejb.dao.Reservas;
-import com.uade.ejb.dao.ServiciosDAO;
 import com.uade.ejb.dto.EstablecimientoDto;
-import com.uade.ejb.dto.EstablecimientoServicioDto;
-import com.uade.ejb.dto.HotelDto;
 import com.uade.ejb.dto.OfertaDto;
-import com.uade.ejb.dto.OHResponse;
-import com.uade.ejb.dto.ServicioDto;
-import com.uade.ejb.dto.busqueda.BusquedaHotel;
-import com.uade.ejb.dto.busqueda.BusquedaPaquete;
-import com.uade.ejb.dto.reserva.ReservaHotel;
-import com.uade.ejb.dto.reserva.ReservaPaquete;
 import com.uade.ejb.entities.EstablishmentEntity;
 
 @Stateless
-public class PWServiceBean implements PWService {
+public class OHServiceBean implements OHService {
 
     private EstablecimientosDAO establecimientosDAO;
 //    private HotelDAO hotelDAO;
@@ -53,11 +32,6 @@ public class PWServiceBean implements PWService {
 //    
     @Override
     public ArrayList<EstablecimientoDto> GetEstablecimientos() {
-//    	ArrayList<EstablecimientoDto> establecimientos = new ArrayList<EstablecimientoDto>();
-//    	EstablecimientoDto e = new EstablecimientoDto();
-//    	e.nombre = "Mi nuevo Hotel";
-//    	establecimientos.add(e);
-
 		ArrayList<EstablecimientoDto> establecimientos = (ArrayList<EstablecimientoDto>) establecimientosDAO.GetEstablecimientos();
         return establecimientos;
     }

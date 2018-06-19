@@ -1,29 +1,20 @@
 package com.uade.rest.resources;
 
-import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collection;
-
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
-
 import com.uade.ejb.dto.OfertaDto;
-import com.uade.ejb.dto.ServicioDto;
-import com.uade.ejb.dto.busqueda.BusquedaPaquete;
-import com.uade.ejb.services.PWService;
+import com.uade.ejb.services.OHService;
 
 @Path("/ofertas")
 @Stateless
 public class OfertasResource {
 
     @EJB
-    private PWService service;
+    private OHService service;
 
     @GET
     @Path("/")

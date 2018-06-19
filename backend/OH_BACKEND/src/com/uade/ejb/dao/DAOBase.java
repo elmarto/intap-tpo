@@ -2,8 +2,11 @@ package com.uade.ejb.dao;
 
 import java.util.List;
 
+import javax.ejb.Stateful;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.PersistenceContext;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -12,101 +15,65 @@ import org.hibernate.SessionFactory;
 import com.uade.ejb.entities.EstablishmentEntity;
 import com.uade.ejb.entities.HotelEntity;
 import com.uade.ejb.entities.OfferEntity;
-import com.uade.ejb.hibernate.JPAUtility;
+import com.uade.ejb.hibernate.LocalEntityManagerFactory;
 
+@Stateful
 public class DAOBase {
-	// borrar esto si no se usa el session factory
-	protected static SessionFactory sf = null;
-	protected Session s;
-
-    public DAOBase() {
-    }
-	
-	public Session getSession() {
-		if (s == null || s.isOpen() == false) {
-			s = sf.openSession();
-		}
-		return s;
-	}
 	
 	public void guardar(Object obj) {
-//		s = getSession();
-//		s.beginTransaction();
-//		s.persist(obj);
-//		s.getTransaction().commit();
-//		s.flush();
-//		s.close();
-		EntityManager entityManager = JPAUtility.getEntityManager();	
+		EntityManager entityManager = LocalEntityManagerFactory.createEntityManager();	
 		entityManager.getTransaction().begin();
 		entityManager.persist(obj);
 		entityManager.getTransaction().commit();
 		entityManager.close();
-		JPAUtility.close();		
 	}
 
 	public void saveOrUpdate(Object obj) {
-		Session s = getSession();
-		s.saveOrUpdate(obj);
-		s.close();
+		
 	}
 	
 	public Object buscar(String className, String campo, String id) {
-		try {
-			Session s = getSession();
-			return s.createQuery(
-					"from " + className + " s where s." + campo + " = ?")
-					.setString(0, id).list().get(0);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			s.close();
-		}
+//		try {
+//			Session s = getSession();
+//			return s.createQuery(
+//					"from " + className + " s where s." + campo + " = ?")
+//					.setString(0, id).list().get(0);
+//
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			s.close();
+//		}
 		return null;
 	}	
 
     protected List<EstablishmentEntity> getEstablecimientos() {
-        org.hibernate.Query query = s.createQuery("from EstablishmentEntity");
-        try {
-        	List<EstablishmentEntity> establishments = (List<EstablishmentEntity>) query.list();
-        	return establishments;
+    	EntityManager entityManager = LocalEntityManagerFactory.createEntityManager();
+    	entityManager.getTransaction().begin();
+        List<EstablishmentEntity> establishmentList = entityManager.createQuery("SELECT e FROM EstablishmentEntity e").getResultList();
+        entityManager.getTransaction().commit();
+        entityManager.close();
+        if (establishmentList == null) {
+            System.out.println("No establishments found.");
         }
-        catch(NoResultException e) {
-        	return null;
-        }
+        return establishmentList;
     }
     
     protected EstablishmentEntity searchEstablishment(String name) {
 		return (EstablishmentEntity) buscar("Establishment", "name", name);    		
     }
-    
-    protected HotelEntity searchUserHotel(String email, String pass) {
-    	Query query = s.createQuery("FROM HOTEL h where h.email = :email and h.pass = :pass");
-    	query.setParameter("email", email);
-    	query.setParameter("pass", pass);
-    	try {
-    		HotelEntity hotel = (HotelEntity) query.uniqueResult();
-    		
-    		if(hotel.userVerification(email, pass)) {
-    			return hotel;
-    		}
-    		
-    		return null;
-    	}
-    	catch(NoResultException e) {
-    		return null;
-    	}
-    }
+  
     
     protected List<OfferEntity> getOffers() {
-        Query query = s.createQuery("FROM Offer");
-        try {
-        	List<OfferEntity> offers = query.list();
-        	return offers;
+    	EntityManager entityManager = LocalEntityManagerFactory.createEntityManager();
+    	entityManager.getTransaction().begin();
+        List<OfferEntity> offerList = entityManager.createQuery("SELECT e FROM OfferEntity e").getResultList();
+        entityManager.getTransaction().commit();
+        entityManager.close();
+        if (offerList == null) {
+            System.out.println("No offers found.");
         }
-        catch(NoResultException e) {
-        	return null;
-        }
+        return offerList;
     }
 /*
     protected ServicioEntity getServicio(String descripcion) {

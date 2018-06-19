@@ -8,6 +8,8 @@ import com.uade.ejb.dto.EstablecimientoDto;
 @Table(name = "establishment")
 public class EstablishmentEntity {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", updatable = false, nullable = false)
 	public int id;
 	@Column(name = "id_hotel")    
 	public int idHotel;
@@ -17,8 +19,10 @@ public class EstablishmentEntity {
 	public int stars;
 	@Column(name = "establishment_photo")   
 	public String establishmentPhoto;
-    // public String city;
+    public String city;
 	
+    public EstablishmentEntity() {}
+    
 	public EstablishmentEntity( 
 			String name, String address, 
 			String establishmentPhoto)

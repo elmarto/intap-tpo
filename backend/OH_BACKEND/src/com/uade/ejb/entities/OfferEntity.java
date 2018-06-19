@@ -5,14 +5,21 @@ import java.util.Collection;
 import java.util.Iterator;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.uade.ejb.dto.EstablecimientoDto;
 import com.uade.ejb.dto.OfertaDto;
 
+//@Entity
 //@Table(name = "offer")
 public class OfferEntity {
-	@Column(name ="id")
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", updatable = false, nullable = false)
 	public int id;
 	
 	public EstablishmentEntity establishment;

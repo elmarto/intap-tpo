@@ -1,4 +1,4 @@
-package com.uade.ejb.mdb.messages;
+package com.uade.ejb.mdb;
 
 import com.uade.ejb.entities.HotelEntity;
 

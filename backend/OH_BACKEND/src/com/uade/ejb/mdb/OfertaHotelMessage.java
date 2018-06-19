@@ -1,4 +1,4 @@
-package com.uade.ejb.mdb.messages;
+package com.uade.ejb.mdb;
 
 import java.util.List;
 

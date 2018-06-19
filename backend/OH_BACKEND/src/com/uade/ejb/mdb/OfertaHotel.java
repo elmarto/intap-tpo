@@ -10,8 +10,6 @@ import javax.persistence.PersistenceContext;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.uade.ejb.backoffice.Backoffice;
-//import com.uade.ejb.dao.Mensajes;
-import com.uade.ejb.mdb.messages.OfertaHotelMessage;
 
 public class OfertaHotel implements MessageListener {
 
