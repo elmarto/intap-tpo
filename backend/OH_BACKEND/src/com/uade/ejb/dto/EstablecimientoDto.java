@@ -10,6 +10,7 @@ public class EstablecimientoDto {
 	public String direccion;
     public String uid;
     public Collection<String> fotosEstablecimiento;
+    public CiudadDto ciudad;
     public HotelDto hotel;
     
     public static EstablecimientoDto FromEntity(EstablecimientoEntity entity) {
@@ -17,8 +18,9 @@ public class EstablecimientoDto {
     	dto.direccion = entity.getDireccion();
     	dto.id = entity.getId();
     	dto.nombre = entity.getNombre();
+    	dto.ciudad = entity.getCiudad().getDto();
     	dto.uid = entity.getUid();
-    	if (entity.getHotel() != null) {    		
+    	if (entity.getHotel() != null) { 		
     		dto.hotel = entity.getHotel().getDto();
     	}
     	return dto;

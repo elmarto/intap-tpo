@@ -2,6 +2,7 @@ package com.uade.ejb.entities;
 
 import javax.persistence.*;
 
+import com.uade.ejb.dto.CiudadDto;
 import com.uade.ejb.dto.EstablecimientoDto;
 
 @Entity
@@ -15,12 +16,15 @@ public class EstablecimientoEntity {
 	public String nombre;
 	public String direccion;
 	public String descripcion;
-	public int estrellas;	
-//	public CiudadEntity ciudad;
+	public int estrellas;
 //	public MapaEntity mapa;
 //	public ArrayList<FotoEntity> fotosEstablecimiento;
 	
-	@OneToOne(cascade = {CascadeType.MERGE})
+	@ManyToOne(cascade = {CascadeType.MERGE})
+	@JoinColumn(name = "ciudad_id")
+	public CiudadEntity ciudad;
+	
+	@ManyToOne(cascade = {CascadeType.MERGE})
 	@JoinColumn(name = "hotel_id")
 	public HotelEntity hotel;
 	
@@ -32,6 +36,7 @@ public class EstablecimientoEntity {
 	{
 		this.nombre = dto.nombre;
 		this.direccion = dto.direccion;
+		this.ciudad = new CiudadEntity(dto.ciudad);
 		if (dto.hotel != null) {
 			this.hotel = new HotelEntity(dto.hotel);			
 		}
@@ -126,6 +131,15 @@ public class EstablecimientoEntity {
 		establecimiento.nombre = this.nombre;
 		establecimiento.uid = this.uid;
 		establecimiento.hotel = this.hotel.getDto();
+		establecimiento.ciudad = this.ciudad.getDto();
 		return establecimiento;
+	}
+
+	public CiudadEntity getCiudad() {
+		return ciudad;
+	}
+
+	public void setCiudad(CiudadEntity ciudad) {
+		this.ciudad = ciudad;
 	}
 }

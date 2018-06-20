@@ -9,6 +9,7 @@
 		<!-- INSERTAR CLASES A SER PERSISTIDAS -->
 		<class>com.uade.ejb.entities.EstablecimientoEntity</class>
 		<class>com.uade.ejb.entities.HotelEntity</class>
+		<class>com.uade.ejb.entities.CiudadEntity</class>
 		<!-- <class>com.uade.ejb.entities.OfertaHoteleraEntity</class> -->
 		
 		
