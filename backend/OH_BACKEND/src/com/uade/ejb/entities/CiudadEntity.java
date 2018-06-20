@@ -13,6 +13,8 @@ public class CiudadEntity {
 	private int id;
 	private String nombre;
 	
+	public CiudadEntity() {}
+	
 	public CiudadEntity(int id, String nombre) {
 		this.id = id;
 		this.nombre = nombre;

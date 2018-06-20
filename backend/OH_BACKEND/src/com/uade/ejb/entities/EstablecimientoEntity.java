@@ -2,7 +2,6 @@ package com.uade.ejb.entities;
 
 import javax.persistence.*;
 
-import com.uade.ejb.dto.CiudadDto;
 import com.uade.ejb.dto.EstablecimientoDto;
 
 @Entity
@@ -17,8 +16,11 @@ public class EstablecimientoEntity {
 	public String direccion;
 	public String descripcion;
 	public int estrellas;
-//	public MapaEntity mapa;
 //	public ArrayList<FotoEntity> fotosEstablecimiento;
+
+	@ManyToOne(cascade = {CascadeType.ALL})
+	@JoinColumn(name = "mapa_id")
+	public MapaEntity mapa;
 	
 	@ManyToOne(cascade = {CascadeType.MERGE})
 	@JoinColumn(name = "ciudad_id")
@@ -37,6 +39,7 @@ public class EstablecimientoEntity {
 		this.nombre = dto.nombre;
 		this.direccion = dto.direccion;
 		this.ciudad = new CiudadEntity(dto.ciudad);
+		this.mapa = new MapaEntity(dto.mapa);
 		if (dto.hotel != null) {
 			this.hotel = new HotelEntity(dto.hotel);			
 		}
@@ -76,14 +79,14 @@ public class EstablecimientoEntity {
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
+	
+	public MapaEntity getMapa() {
+		return mapa;
+	}
 
-//	public CiudadEntity getCiudad() {
-//		return ciudad;
-//	}
-//
-//	public void setCiudad(CiudadEntity ciudad) {
-//		this.ciudad = ciudad;
-//	}
+	public void setMapa(MapaEntity mapa) {
+		this.mapa = mapa;
+	}
 
 	public HotelEntity getHotel() {
 		return hotel;
@@ -101,14 +104,6 @@ public class EstablecimientoEntity {
 		this.descripcion = descripcion;
 	}
 
-//	public MapaEntity getMapa() {
-//		return mapa;
-//	}
-//
-//	public void setMapa(MapaEntity mapa) {
-//		this.mapa = mapa;
-//	}
-//
 //	public ArrayList<FotoEntity> getFotosEstablecimiento() {
 //		return fotosEstablecimiento;
 //	}
@@ -126,12 +121,14 @@ public class EstablecimientoEntity {
 	}
 
 	public EstablecimientoDto getDto() {
-		EstablecimientoDto establecimiento = new EstablecimientoDto();
+		EstablecimientoDto establecimiento = new EstablecimientoDto();			
+		establecimiento.id = this.id;
 		establecimiento.direccion = this.direccion;
 		establecimiento.nombre = this.nombre;
 		establecimiento.uid = this.uid;
 		establecimiento.hotel = this.hotel.getDto();
 		establecimiento.ciudad = this.ciudad.getDto();
+		establecimiento.mapa = this.mapa.getDto();
 		return establecimiento;
 	}
 
