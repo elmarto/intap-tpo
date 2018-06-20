@@ -11,6 +11,7 @@
 		<class>com.uade.ejb.entities.HotelEntity</class>
 		<class>com.uade.ejb.entities.CiudadEntity</class>
 		<class>com.uade.ejb.entities.MapaEntity</class>
+		<class>com.uade.ejb.entities.FotoEntity</class>
 		<!-- <class>com.uade.ejb.entities.OfertaHoteleraEntity</class> -->
 		
 		

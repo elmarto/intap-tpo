@@ -1,8 +1,12 @@
 package com.uade.ejb.entities;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.persistence.*;
 
 import com.uade.ejb.dto.EstablecimientoDto;
+import com.uade.ejb.dto.FotoDto;
 
 @Entity
 @Table(name = "establecimientos")
@@ -16,7 +20,9 @@ public class EstablecimientoEntity {
 	public String direccion;
 	public String descripcion;
 	public int estrellas;
-//	public ArrayList<FotoEntity> fotosEstablecimiento;
+	
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch=FetchType.EAGER)
+	public Collection<FotoEntity> fotosEstablecimiento;
 
 	@ManyToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "mapa_id")
@@ -40,10 +46,31 @@ public class EstablecimientoEntity {
 		this.direccion = dto.direccion;
 		this.ciudad = new CiudadEntity(dto.ciudad);
 		this.mapa = new MapaEntity(dto.mapa);
+		
+		this.fotosEstablecimiento = new ArrayList<FotoEntity>();
+		dto.fotosEstablecimiento.forEach((foto) -> 
+			this.fotosEstablecimiento.add(new FotoEntity(foto))
+		);
+		
 		if (dto.hotel != null) {
 			this.hotel = new HotelEntity(dto.hotel);			
 		}
-		// this.establishmentPhoto = establecimiento.fotosEstablecimiento;
+	}
+	
+	public EstablecimientoDto getDto() {
+		EstablecimientoDto dto = new EstablecimientoDto();			
+		dto.id = this.id;
+		dto.direccion = this.direccion;
+		dto.nombre = this.nombre;
+		dto.uid = this.uid;
+		dto.hotel = this.hotel.getDto();
+		dto.ciudad = this.ciudad.getDto();
+		dto.mapa = this.mapa.getDto();
+		dto.fotosEstablecimiento = new ArrayList<FotoDto>();
+		for (FotoEntity fotoEntity : this.fotosEstablecimiento) {
+			dto.fotosEstablecimiento.add(fotoEntity.getDto());
+		} 
+		return dto;
 	}
 	
 	
@@ -104,32 +131,12 @@ public class EstablecimientoEntity {
 		this.descripcion = descripcion;
 	}
 
-//	public ArrayList<FotoEntity> getFotosEstablecimiento() {
-//		return fotosEstablecimiento;
-//	}
-//
-//	public void setFotosEstablecimiento(ArrayList<FotoEntity> fotosEstablecimiento) {
-//		this.fotosEstablecimiento = fotosEstablecimiento;
-//	}
-
 	public int getEstrellas() {
 		return estrellas;
 	}
 
 	public void setEstrellas(int estrellas) {
 		this.estrellas = estrellas;
-	}
-
-	public EstablecimientoDto getDto() {
-		EstablecimientoDto establecimiento = new EstablecimientoDto();			
-		establecimiento.id = this.id;
-		establecimiento.direccion = this.direccion;
-		establecimiento.nombre = this.nombre;
-		establecimiento.uid = this.uid;
-		establecimiento.hotel = this.hotel.getDto();
-		establecimiento.ciudad = this.ciudad.getDto();
-		establecimiento.mapa = this.mapa.getDto();
-		return establecimiento;
 	}
 
 	public CiudadEntity getCiudad() {
@@ -139,4 +146,14 @@ public class EstablecimientoEntity {
 	public void setCiudad(CiudadEntity ciudad) {
 		this.ciudad = ciudad;
 	}
+	
+	public Collection<FotoEntity> getFotosEstablecimiento() {
+		return fotosEstablecimiento;
+	}
+
+	public void setFotosEstablecimiento(Collection<FotoEntity> fotosEstablecimiento) {
+		this.fotosEstablecimiento = fotosEstablecimiento;
+	}
+
+	
 }
