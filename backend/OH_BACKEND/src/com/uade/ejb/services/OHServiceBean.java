@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 import com.uade.ejb.dao.EstablecimientoDAO;
+import com.uade.ejb.dao.OfertaHoteleraDAO;
 import com.uade.ejb.dto.EstablecimientoDto;
 import com.uade.ejb.dto.OfertaHoteleraDto;
 import com.uade.ejb.entities.EstablecimientoEntity;
@@ -12,24 +13,15 @@ import com.uade.ejb.entities.EstablecimientoEntity;
 public class OHServiceBean implements OHService {
 
     private EstablecimientoDAO establecimientosDAO;
-//    private HotelDAO hotelDAO;
-//    private OfertasDAO ofertasDAO;
+    private OfertaHoteleraDAO ofertaHoteleraDAO;
 //    private ServiciosDAO serviciosDAO; 
 
     @PostConstruct
     public void init() {
         establecimientosDAO = new EstablecimientoDAO();
-//        hotelDAO = new HotelDAO(em);
-//        ofertasDAO = new OfertasDAO(em);
-        
+        ofertaHoteleraDAO = new OfertaHoteleraDAO();   
     }
-
-//    @Override
-//    public Response Login(String email, String pass) {
-//    	HotelDto hotel = hotelDAO.Login(email, pass);
-//    	return new Response(true, hotel);
-//    }
-//    
+    
     @Override
     public ArrayList<EstablecimientoDto> GetEstablecimientos() {
 		ArrayList<EstablecimientoDto> establecimientos = (ArrayList<EstablecimientoDto>) establecimientosDAO.GetEstablecimientos();

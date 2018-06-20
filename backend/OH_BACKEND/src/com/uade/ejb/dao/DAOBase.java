@@ -24,7 +24,15 @@ public class DAOBase {
 	}
 	
 	public Object buscar(String className, String campo, String id) {
-		return null;
+		EntityManager entityManager = LocalEntityManagerFactory.createEntityManager();
+    	entityManager.getTransaction().begin();
+		Object entityFound = entityManager.createQuery("SELECT e FROM "+className+" e WHERE "+campo+"="+id).getSingleResult();
+        entityManager.getTransaction().commit();
+        entityManager.close();
+        if (entityFound == null) {
+            System.out.println("No establishments found.");
+        }
+        return entityFound;
 	}	
 
     protected List<EstablecimientoEntity> getEstablecimientos() {

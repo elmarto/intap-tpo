@@ -8,7 +8,7 @@ import com.uade.ejb.dto.OfertaHoteleraDto;
 @Local
 public interface OHService {
 	
-	// THIS METHODS ARE IMPLEMENTED IN DAOs
+	// THIS METHODS ARE IMPLEMENTED IN OHServiceBean
 
     public ArrayList<EstablecimientoDto> GetEstablecimientos();
     public EstablecimientoDto CreateNewEstablishment(EstablecimientoDto establecimiento);

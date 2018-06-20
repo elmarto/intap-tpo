@@ -14,19 +14,27 @@ public class EstablecimientoEntity {
 	public String uid;
 	public String nombre;
 	public String direccion;
-//	public CiudadEntity ciudad;
-//	public HotelEntity hotel;
 	public String descripcion;
+	public int estrellas;	
+//	public CiudadEntity ciudad;
 //	public MapaEntity mapa;
 //	public ArrayList<FotoEntity> fotosEstablecimiento;
-	public int estrellas;
+	
+	@OneToOne(cascade = {CascadeType.MERGE})
+	@JoinColumn(name = "hotel_id")
+	public HotelEntity hotel;
+	
+	
 	
     public EstablecimientoEntity() {}
 	
-	public EstablecimientoEntity(EstablecimientoDto establecimiento)
+	public EstablecimientoEntity(EstablecimientoDto dto)
 	{
-		this.nombre = establecimiento.nombre;
-		this.direccion = establecimiento.direccion;
+		this.nombre = dto.nombre;
+		this.direccion = dto.direccion;
+		if (dto.hotel != null) {
+			this.hotel = new HotelEntity(dto.hotel);			
+		}
 		// this.establishmentPhoto = establecimiento.fotosEstablecimiento;
 	}
 	
@@ -72,13 +80,13 @@ public class EstablecimientoEntity {
 //		this.ciudad = ciudad;
 //	}
 
-//	public HotelEntity getHotel() {
-//		return hotel;
-//	}
-//
-//	public void setHotel(HotelEntity hotel) {
-//		this.hotel = hotel;
-//	}
+	public HotelEntity getHotel() {
+		return hotel;
+	}
+
+	public void setHotel(HotelEntity hotel) {
+		this.hotel = hotel;
+	}
 
 	public String getDescripcion() {
 		return descripcion;
@@ -117,6 +125,7 @@ public class EstablecimientoEntity {
 		establecimiento.direccion = this.direccion;
 		establecimiento.nombre = this.nombre;
 		establecimiento.uid = this.uid;
+		establecimiento.hotel = this.hotel.getDto();
 		return establecimiento;
 	}
 }

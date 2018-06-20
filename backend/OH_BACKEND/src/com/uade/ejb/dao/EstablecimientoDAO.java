@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import com.uade.ejb.entities.EstablecimientoEntity;
+import com.uade.ejb.entities.HotelEntity;
 import com.uade.ejb.dto.EstablecimientoDto;
 
 public class EstablecimientoDAO extends DAOBase {
@@ -23,10 +24,12 @@ public class EstablecimientoDAO extends DAOBase {
 		return establecimientos;
 	}
 	
-	public EstablecimientoDto CreateNewEstablishment(EstablecimientoEntity establishment) {
-		guardar(establishment);
+	public EstablecimientoDto CreateNewEstablishment(EstablecimientoEntity establecimiento) {
+		HotelEntity hotel = (HotelEntity) buscar("HotelEntity", "id", "1");
+		establecimiento.setHotel(hotel);
+		guardar(establecimiento);
 		System.out.println("Entity saved.");
-		return establishment.getDto();
+		return establecimiento.getDto();
 	}
 
 }

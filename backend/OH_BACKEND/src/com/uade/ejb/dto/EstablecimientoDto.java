@@ -10,6 +10,7 @@ public class EstablecimientoDto {
 	public String direccion;
     public String uid;
     public Collection<String> fotosEstablecimiento;
+    public HotelDto hotel;
     
     public static EstablecimientoDto FromEntity(EstablecimientoEntity entity) {
     	EstablecimientoDto dto = new EstablecimientoDto();
@@ -17,6 +18,9 @@ public class EstablecimientoDto {
     	dto.id = entity.getId();
     	dto.nombre = entity.getNombre();
     	dto.uid = entity.getUid();
+    	if (entity.getHotel() != null) {    		
+    		dto.hotel = entity.getHotel().getDto();
+    	}
     	return dto;
     }
 }
