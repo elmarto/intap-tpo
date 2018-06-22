@@ -1,23 +1,34 @@
 export interface Establecimiento {
-  id: number;
+  id?: number;
   uid: string;
   nombre: string;
   direccion: string;
-  ciudad: string;
+  ciudad: Ciudad;
   estrellas: number;
-  hotel: Hotel;
+  hotel?: Hotel;
   descripcion: string;
-  mapa: Image;
-  fotosEstablecimiento: Image[];
+  mapa: Mapa;
+  fotosEstablecimiento: Foto[];
 }
 
 export interface Hotel {
   id: number;
   nombre: string;
-  fotosHotel: Image[];
+  fotosHotel: Foto[];
 }
 
-export interface Image {
+export interface Ciudad {
+  id: number;
+  nombre: string;
+}
+
+export interface Mapa {
+  lat: string;
+  lon: string;
+}
+
+export interface Foto {
+  id?: number;
   url: string;
 }
 

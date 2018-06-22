@@ -8,16 +8,20 @@ public class EstablecimientoDto {
 	public int id;
 	public String nombre;
 	public String direccion;
+	public String descripcion;
     public String uid;
     public ArrayList<FotoDto> fotosEstablecimiento;
     public CiudadDto ciudad;
     public HotelDto hotel;
 	public MapaDto mapa;
+	public int estrellas;
     
     public static EstablecimientoDto fromEntity(EstablecimientoEntity entity) {
     	EstablecimientoDto dto = new EstablecimientoDto();
     	dto.direccion = entity.getDireccion();
     	dto.id = entity.getId();
+    	dto.estrellas = entity.getEstrellas();
+    	dto.descripcion = entity.getDescripcion();
     	dto.nombre = entity.getNombre();
     	dto.ciudad = entity.getCiudad().getDto();
     	dto.mapa = entity.getMapa().getDto();

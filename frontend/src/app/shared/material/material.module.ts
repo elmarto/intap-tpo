@@ -3,9 +3,10 @@ import { MatNativeDateModule, MatSelectModule, MatDialogModule, MatSnackBarModul
   MatSidenavModule, MatButtonModule, MatIconModule, MatTableModule, MatDatepickerModule,
   MatCheckboxModule, MatInputModule, MatButtonToggleModule, MatCardModule, MatProgressSpinnerModule,
   MatTooltipModule, MatRadioModule, MatGridListModule, MatTabsModule, MatPaginatorModule, MatChipsModule,
-  MatSliderModule, MatExpansionModule} from '@angular/material';
+  MatSliderModule, MatExpansionModule, MatAutocompleteModule} from '@angular/material';
 
   const MAT_MODULES = [
+    MatAutocompleteModule,
     MatNativeDateModule,
     MatSelectModule,
     MatDialogModule,

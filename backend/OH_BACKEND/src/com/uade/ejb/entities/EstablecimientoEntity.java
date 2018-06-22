@@ -49,6 +49,8 @@ public class EstablecimientoEntity {
 		this.direccion = dto.direccion;
 		this.ciudad = new CiudadEntity(dto.ciudad);
 		this.mapa = new MapaEntity(dto.mapa);
+		this.estrellas = dto.estrellas;
+		this.descripcion = dto.descripcion;
 		
 		this.fotosEstablecimiento = new ArrayList<FotoEntity>();
 		dto.fotosEstablecimiento.forEach((foto) -> 
@@ -66,6 +68,8 @@ public class EstablecimientoEntity {
 		dto.direccion = this.direccion;
 		dto.nombre = this.nombre;
 		dto.uid = this.uid;
+		dto.descripcion = this.descripcion;
+		dto.estrellas = this.estrellas;
 		dto.hotel = this.hotel.getDto();
 		dto.ciudad = this.ciudad.getDto();
 		dto.mapa = this.mapa.getDto();

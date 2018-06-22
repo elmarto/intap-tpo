@@ -16,7 +16,12 @@
       </mat-form-field>
     
       <mat-form-field class="field">
-        <input matInput formControlName="ciudad" placeholder="Ciudad">
+        <input matInput formControlName="ciudad" placeholder="Ciudad" aria-label="Ciudad" [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let ciudad of filteredCiudades" [value]="ciudad.nombre" (click)="selectCiudad(ciudad)" (onSelect)="selectCiudad(ciudad)">
+            <span>{{ ciudad.nombre }}</span>
+          </mat-option>
+        </mat-autocomplete>
         <mat-error *ngIf="form.get('ciudad').hasError('required')">Este campo es requerido</mat-error>
         <mat-error *ngIf="form.get('ciudad').hasError('maxlength')">Debe tener menos de 50 caracteres.</mat-error>
       </mat-form-field>
@@ -33,11 +38,57 @@
         </span>
       </div>
 
+      <div class="field" fxLayoutAlign="start center" fxLayoutGap="1em" formGroupName="mapa">
+        <mat-form-field>
+          <input matInput formControlName="lat" placeholder="Latitud">
+          <mat-error *ngIf="form.get('mapa.lat').hasError('required')">Este campo es requerido</mat-error>
+          <mat-error *ngIf="form.get('mapa.lat').hasError('maxlength')">Debe tener menos de 50 caracteres.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput formControlName="lon" placeholder="Longitud">
+          <mat-error *ngIf="form.get('mapa.lon').hasError('required')">Este campo es requerido</mat-error>
+          <mat-error *ngIf="form.get('mapa.lon').hasError('maxlength')">Debe tener menos de 50 caracteres.</mat-error>
+        </mat-form-field>
+      </div>
+
       <mat-form-field class="field">
         <textarea matInput formControlName="descripcion" placeholder="Descripción"></textarea>
         <mat-error *ngIf="form.get('descripcion').hasError('required')">Este campo es requerido</mat-error>
         <mat-error *ngIf="form.get('descripcion').hasError('maxlength')">Debe tener menos de 100 caracteres.</mat-error>
       </mat-form-field>
+
+      <div fxFlex="100">
+        <hr>
+  
+        <h3>Fotos</h3>
+  
+        <div fxLayout="row">
+          <div formArrayName="fotosEstablecimiento" class="field">
+            <div *ngFor="let item of fotosEstablecimiento.controls; let i = index;" [formGroupName]="i" fxLayout fxLayoutAlign="start center" fxLayoutGap="1em">
+              <mat-form-field class="field">
+                <input matInput formControlName="url" placeholder="Foto URL">
+              </mat-form-field>
+              <button type="button" mat-icon-button color="primary" (click)="removeFoto(i)" *ngIf="i == fotosEstablecimiento.controls.length - 1 && i !== 0">
+                <mat-icon>delete</mat-icon>
+              </button>
+              <button type="button" mat-icon-button color="primary" (click)="addFoto()" *ngIf="i == fotosEstablecimiento.controls.length - 1">
+                <mat-icon>add</mat-icon>
+              </button>
+            </div>
+          </div>
+  
+          <div class="field" fxLayout="row wrap" fxLayoutGap="5px">
+            <i fxFlex="100">{{imageUrl}}</i>
+            <img style="width: 50px; height: 50px;" (click)="loadImage('http://43c8aeb70a81eab36602-b81761554a95e2087c6840fa092e65b8.r88.cf1.rackcdn.com/lps/assets/u/she113ex.113288_tb-1.jpg')" src="http://43c8aeb70a81eab36602-b81761554a95e2087c6840fa092e65b8.r88.cf1.rackcdn.com/lps/assets/u/she113ex.113288_tb-1.jpg">
+            <img style="width: 50px; height: 50px;" (click)="loadImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeS710G5DSqf56dfbJCghV-83wsebKvwrVt0OP5XQtwkFl-UJH')" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeS710G5DSqf56dfbJCghV-83wsebKvwrVt0OP5XQtwkFl-UJH">
+            <img style="width: 50px; height: 50px;" (click)="loadImage('http://www.puntomardelplata.com/admin/recursos/hoteles_fotos/6.jpg')" src="http://www.puntomardelplata.com/admin/recursos/hoteles_fotos/6.jpg">
+            <img style="width: 50px; height: 50px;" (click)="loadImage('https://dimg04.c-ctrip.com/images/22040l000000d5w5eB399_R_550_412.jpg')" src="https://dimg04.c-ctrip.com/images/22040l000000d5w5eB399_R_550_412.jpg">
+            <img style="width: 50px; height: 50px;" (click)="loadImage('https://dimg04.c-ctrip.com/images/220g0k000000c7jf9ECEC_R_550_412.jpg')" src="https://dimg04.c-ctrip.com/images/220g0k000000c7jf9ECEC_R_550_412.jpg">
+            <img style="width: 50px; height: 50px;" (click)="loadImage('http://hotelinfo.com.ar/files/hoteles/1337277536_s_mardel_1.jpg')" src="http://hotelinfo.com.ar/files/hoteles/1337277536_s_mardel_1.jpg">
+          </div>
+        </div>
+      </div>
     </div>
 
     <div fxLayoutAlign="end center" fxLayoutGap="1em">
