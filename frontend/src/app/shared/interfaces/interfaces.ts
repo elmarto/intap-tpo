@@ -55,4 +55,5 @@ export interface TipoServicio {
 export interface Servicio {
   id: number;
   nombre: string;
+  value?: boolean;
 }

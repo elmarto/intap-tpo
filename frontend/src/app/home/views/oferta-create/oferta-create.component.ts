@@ -60,6 +60,10 @@ export class OfertaCreateComponent implements OnInit {
     });
   }
 
+  onServicioChecked(servicio) {
+    servicio.value = !servicio.value;
+  }
+
   onSubmit(form) {
     const ctrl = this.form.controls;
     const request = {
@@ -74,7 +78,17 @@ export class OfertaCreateComponent implements OnInit {
       politicas: ctrl.fechaHasta.value,
       servicios: ''
     };
-    // request.servicios
+
+    const servicios = [];
+
+    this.tipoServicios.forEach(tipoServicio => {
+      tipoServicio.servicios.forEach(servicio => {
+        if (servicio.value) {
+          servicios.push(servicio.nombre);
+        }
+      });
+    });
+    request.servicios = JSON.stringify(servicios);
 
     this.ofertasService.create(request).subscribe(response => {
       this.snackBar.open('Oferta guardado exitosamente', null, { duration: 2000 });

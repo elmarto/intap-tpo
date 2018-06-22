@@ -19,4 +19,12 @@ export class OfertaListComponent {
       .subscribe(response => this.ofertas = response);
   }
 
+  parse(param: string) {
+    try {
+      return JSON.parse(param);
+    } catch (e) {
+      return [];
+    }
+  }
+
 }
