@@ -28,7 +28,7 @@ public class EstablecimientoDAO extends DAOBase {
 		HotelEntity hotel = (HotelEntity) buscar("HotelEntity", "id", "1");
 		establecimiento.setHotel(hotel);
 		guardar(establecimiento);
-		System.out.println("Entity saved.");
+		System.out.println("Establecimiento saved.");
 		return establecimiento.getDto();
 	}
 

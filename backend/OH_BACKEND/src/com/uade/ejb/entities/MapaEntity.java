@@ -29,6 +29,11 @@ public class MapaEntity {
 		this.lon = lon;
 	}
 	
+	public MapaEntity(String lat, String lon) {
+		this.lat = lat;
+		this.lon = lon;
+	}
+	
 	public MapaEntity(MapaDto dto) {
 		this.id = dto.id;
 		this.lat = dto.lat;

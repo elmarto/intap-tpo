@@ -38,10 +38,13 @@ public class EstablecimientoEntity {
 	
 	
 	
-    public EstablecimientoEntity() {}
+    public EstablecimientoEntity() {
+    	this.fotosEstablecimiento = new ArrayList<FotoEntity>();
+    }
 	
 	public EstablecimientoEntity(EstablecimientoDto dto)
 	{
+		this.id = dto.id;
 		this.nombre = dto.nombre;
 		this.direccion = dto.direccion;
 		this.ciudad = new CiudadEntity(dto.ciudad);
@@ -67,9 +70,12 @@ public class EstablecimientoEntity {
 		dto.ciudad = this.ciudad.getDto();
 		dto.mapa = this.mapa.getDto();
 		dto.fotosEstablecimiento = new ArrayList<FotoDto>();
-		for (FotoEntity fotoEntity : this.fotosEstablecimiento) {
-			dto.fotosEstablecimiento.add(fotoEntity.getDto());
-		} 
+		if (this.fotosEstablecimiento != null) {
+			for (FotoEntity fotoEntity : this.fotosEstablecimiento) {
+				dto.fotosEstablecimiento.add(fotoEntity.getDto());
+			}	
+		}
+		 
 		return dto;
 	}
 	

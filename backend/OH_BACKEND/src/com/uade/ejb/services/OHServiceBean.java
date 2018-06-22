@@ -8,6 +8,7 @@ import com.uade.ejb.dao.OfertaHoteleraDAO;
 import com.uade.ejb.dto.EstablecimientoDto;
 import com.uade.ejb.dto.OfertaHoteleraDto;
 import com.uade.ejb.entities.EstablecimientoEntity;
+import com.uade.ejb.entities.OfertaHoteleraEntity;
 
 @Stateless
 public class OHServiceBean implements OHService {
@@ -35,26 +36,12 @@ public class OHServiceBean implements OHService {
     
     @Override
     public ArrayList<OfertaHoteleraDto> ListOffers() {
-    	// Collection<OfertaDto> ofertas = ofertasDAO.GetAllOffers();
-    	ArrayList<OfertaHoteleraDto> ofertas = new ArrayList<OfertaHoteleraDto>();
-    	OfertaHoteleraDto e = new OfertaHoteleraDto();
-    	e.nombre = "Oferta nueva!";
-    	ofertas.add(e);
+    	ArrayList<OfertaHoteleraDto> ofertas = (ArrayList<OfertaHoteleraDto>) ofertaHoteleraDAO.ListOffers();
         return ofertas;
     }
     
-//    @Override
-//    public OfertaDto createNewOffer(String nombre_establecimiento, String nombre, Date fechaDesde, Date fechaHasta, int cuota, int canitdad, Collection<ServicioDto> servicios, int estado) {
-//    	// return ofertasDAO.CreateNewOffer(nombre_establecimiento, nombre, fechaDesde, fechaHasta, cuota, canitdad, servicios, estado);
-//    	OfertaDto o = new OfertaDto();
-//    	o.nombre = "Oferta recien creada!";
-//    	return o;
-//    }
-//    
-//    @Override 
-//    public Response FormNewOffer() {
-//    	Collection<EstablecimientoDto> establecimientos = establecimientosDAO.GetEstablecimientos();
-//    	Collection<ServicioDto> servicios = serviciosDAO.getServices();
-//    	return new Response(true, new EstablecimientoServicioDto(establecimientos, servicios));
-//    }
+    @Override
+    public OfertaHoteleraDto createNewOffer(OfertaHoteleraDto oferta) {
+    	return ofertaHoteleraDAO.CreateNewOffer(new OfertaHoteleraEntity(oferta));
+    }
 }

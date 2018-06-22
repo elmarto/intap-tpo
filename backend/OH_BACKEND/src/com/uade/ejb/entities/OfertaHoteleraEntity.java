@@ -1,15 +1,21 @@
 package com.uade.ejb.entities;
 
 import java.sql.Date;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import com.uade.ejb.dto.OfertaHoteleraDto;
 
-//@Entity
-//@Table(name = "ofertas_hoteleras")
+@Entity
+@Table(name = "ofertas")
 public class OfertaHoteleraEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,11 +26,16 @@ public class OfertaHoteleraEntity {
 	public int cupo;
 	public String mediosDePago;
 	public String tipoHabitacion;
-	//public EstablishmentEntity establecimiento;
 	public Date fechaDesde;
 	public Date fechaHasta;
 	public String politicas;
 	public String servicios;
+	
+	@OneToOne(cascade = {CascadeType.MERGE})
+	@JoinColumn(name = "establecimiento_id")
+	public EstablecimientoEntity establecimiento;
+	
+	public OfertaHoteleraEntity(){}
 	
 	public OfertaHoteleraEntity(OfertaHoteleraDto ofertaDto)
 	{
@@ -33,7 +44,7 @@ public class OfertaHoteleraEntity {
 		this.cupo = ofertaDto.cupo;
 		this.mediosDePago = ofertaDto.mediosDePago;
 		this.tipoHabitacion = ofertaDto.tipoHabitacion;
-		//this.establecimiento = ofertaDto.establecimiento;
+		this.establecimiento = new EstablecimientoEntity(ofertaDto.establecimiento);
 		this.fechaDesde = ofertaDto.fechaDesde;
 		this.fechaHasta = ofertaDto.fechaHasta;
 		this.politicas = ofertaDto.politicas;
@@ -129,12 +140,27 @@ public class OfertaHoteleraEntity {
 	public void setServicios(String servicios) {
 		this.servicios = servicios;
 	}
+	
+	public EstablecimientoEntity getEstablecimiento() {
+		return establecimiento;
+	}
+
+	public void setEstablecimiento(EstablecimientoEntity establecimiento) {
+		this.establecimiento = establecimiento;
+	}
 
 	public OfertaHoteleraDto getDto() {
 		OfertaHoteleraDto oferta = new OfertaHoteleraDto();
 		oferta.nombre = this.nombre;
+		oferta.precio = this.precio;
 		oferta.cupo = this.cupo;
-		// completar campos
+		oferta.mediosDePago = this.mediosDePago;
+		oferta.tipoHabitacion = this.tipoHabitacion;
+		oferta.fechaDesde = this.fechaDesde;
+		oferta.fechaHasta = this.fechaHasta;
+		oferta.politicas = this.politicas;
+		oferta.servicios = this.servicios;
+		oferta.establecimiento = this.establecimiento.getDto();
 		return oferta;
 	}
 }

@@ -10,8 +10,9 @@ public class CiudadDAO extends DAOBase {
 		return entity.getDto();
 	}
 	
-	public void loadCiudades() {
-		guardar(new CiudadEntity(10001,"Arauco"));
+	public CiudadEntity loadCiudades() {
+		CiudadEntity ciudad = new CiudadEntity(10001,"Arauco");
+		guardar(ciudad);
 		guardar(new CiudadEntity(10002,"Aminga"));
 		guardar(new CiudadEntity(10003,"Chamical"));
 		guardar(new CiudadEntity(10004,"Chilecito"));
@@ -3212,5 +3213,6 @@ public class CiudadDAO extends DAOBase {
 //		guardar(new CiudadEntity(14384,"Barranca Yaco"));
 //		guardar(new CiudadEntity(14385,"Valle Colorado"));
 //		guardar(new CiudadEntity(14386,"Zapallar"));
+		return ciudad;
 	}
 }
