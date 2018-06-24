@@ -16,7 +16,7 @@
             <mat-panel-title fxLayoutGap="1em" style="width: 200px;">
               <span>{{oferta.nombre}}</span>
             </mat-panel-title>
-            <mat-panel-description>${{oferta.precio}}</mat-panel-description>
+            <mat-panel-description>${{oferta.precio}} | Disponibilidad: {{oferta.cupo}}</mat-panel-description>
           </mat-expansion-panel-header>
       
           <p>Establecimiento: {{oferta.establecimiento.nombre}}</p>

@@ -10,7 +10,7 @@ public class EstablecimientoDto {
 	public String direccion;
 	public String descripcion;
     public String uid;
-    public ArrayList<FotoDto> fotosEstablecimiento;
+    public String fotosEstablecimiento;
     public CiudadDto ciudad;
     public HotelDto hotel;
 	public MapaDto mapa;
@@ -25,7 +25,7 @@ public class EstablecimientoDto {
     	dto.nombre = entity.getNombre();
     	dto.ciudad = entity.getCiudad().getDto();
     	dto.mapa = entity.getMapa().getDto();
-    	entity.getFotosEstablecimiento().forEach((foto) -> dto.fotosEstablecimiento.add(foto.getDto()));
+    	dto.fotosEstablecimiento = entity.getFotosEstablecimiento();
     	
     	dto.uid = entity.getUid();
     	if (entity.getHotel() != null) { 		

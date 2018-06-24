@@ -26,7 +26,9 @@ export class OfertaCreateComponent implements OnInit {
     private snackBar: MatSnackBar,
     private router: Router
   ) {
-    this.establecimientosService.all().subscribe(establecimientos => this.establecimientos = establecimientos);
+    this.establecimientosService.all().subscribe(establecimientos => {
+      return this.establecimientos = establecimientos.filter(e => e.uid);
+    });
     this.serviciosService.all().subscribe(tipoServicios => this.tipoServicios = tipoServicios);
     this.tiposHabitacion = [
       { value: 'SIMPLE' },
@@ -50,7 +52,7 @@ export class OfertaCreateComponent implements OnInit {
       nombre: [null, Validators.compose([Validators.required, Validators.maxLength(50)])],
       establecimiento: [null, Validators.compose([Validators.required])],
       precio: [null, Validators.compose([Validators.required, Validators.min(0)])],
-      cupo: [null, Validators.compose([Validators.required, Validators.min(0), Validators.max(5)])],
+      cupo: [null, Validators.compose([Validators.required, Validators.min(0), Validators.max(200)])],
       tipoHabitacion: [null, Validators.compose([Validators.required])],
       mediosDePago: [null, Validators.compose([Validators.required])],
       fechaDesde: [null, Validators.compose([Validators.required])],
@@ -79,16 +81,18 @@ export class OfertaCreateComponent implements OnInit {
       servicios: ''
     };
 
-    const servicios = [];
+    if (this.tipoServicios) {
+      const servicios = [];
 
-    this.tipoServicios.forEach(tipoServicio => {
-      tipoServicio.servicios.forEach(servicio => {
-        if (servicio.value) {
-          servicios.push(servicio.nombre);
-        }
+      this.tipoServicios.forEach(tipoServicio => {
+        tipoServicio.servicios.forEach(servicio => {
+          if (servicio.value) {
+            servicios.push(servicio.nombre);
+          }
+        });
       });
-    });
-    request.servicios = JSON.stringify(servicios);
+      request.servicios = servicios.reduce((a, b) => a + ', ' + b);
+    }
 
     this.ofertasService.create(request).subscribe(response => {
       this.snackBar.open('Oferta guardado exitosamente', null, { duration: 2000 });

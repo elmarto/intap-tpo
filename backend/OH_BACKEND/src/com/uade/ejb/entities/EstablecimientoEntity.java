@@ -3,10 +3,18 @@ package com.uade.ejb.entities;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import com.uade.ejb.dto.EstablecimientoDto;
-import com.uade.ejb.dto.FotoDto;
 
 @Entity
 @Table(name = "establecimientos")
@@ -21,8 +29,8 @@ public class EstablecimientoEntity {
 	public String descripcion;
 	public int estrellas;
 	
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch=FetchType.EAGER)
-	public Collection<FotoEntity> fotosEstablecimiento;
+	@Lob
+	public String fotosEstablecimiento;
 
 	@ManyToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "mapa_id")
@@ -39,7 +47,7 @@ public class EstablecimientoEntity {
 	
 	
     public EstablecimientoEntity() {
-    	this.fotosEstablecimiento = new ArrayList<FotoEntity>();
+    	
     }
 	
 	public EstablecimientoEntity(EstablecimientoDto dto)
@@ -51,11 +59,7 @@ public class EstablecimientoEntity {
 		this.mapa = new MapaEntity(dto.mapa);
 		this.estrellas = dto.estrellas;
 		this.descripcion = dto.descripcion;
-		
-		this.fotosEstablecimiento = new ArrayList<FotoEntity>();
-		dto.fotosEstablecimiento.forEach((foto) -> 
-			this.fotosEstablecimiento.add(new FotoEntity(foto))
-		);
+		this.fotosEstablecimiento = dto.fotosEstablecimiento;
 		
 		if (dto.hotel != null) {
 			this.hotel = new HotelEntity(dto.hotel);			
@@ -70,16 +74,10 @@ public class EstablecimientoEntity {
 		dto.uid = this.uid;
 		dto.descripcion = this.descripcion;
 		dto.estrellas = this.estrellas;
+		dto.fotosEstablecimiento = this.fotosEstablecimiento;
 		dto.hotel = this.hotel.getDto();
 		dto.ciudad = this.ciudad.getDto();
 		dto.mapa = this.mapa.getDto();
-		dto.fotosEstablecimiento = new ArrayList<FotoDto>();
-		if (this.fotosEstablecimiento != null) {
-			for (FotoEntity fotoEntity : this.fotosEstablecimiento) {
-				dto.fotosEstablecimiento.add(fotoEntity.getDto());
-			}	
-		}
-		 
 		return dto;
 	}
 	
@@ -157,11 +155,11 @@ public class EstablecimientoEntity {
 		this.ciudad = ciudad;
 	}
 	
-	public Collection<FotoEntity> getFotosEstablecimiento() {
+	public String getFotosEstablecimiento() {
 		return fotosEstablecimiento;
 	}
 
-	public void setFotosEstablecimiento(Collection<FotoEntity> fotosEstablecimiento) {
+	public void setFotosEstablecimiento(String fotosEstablecimiento) {
 		this.fotosEstablecimiento = fotosEstablecimiento;
 	}
 

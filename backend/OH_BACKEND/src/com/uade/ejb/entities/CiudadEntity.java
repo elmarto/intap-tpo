@@ -21,7 +21,7 @@ public class CiudadEntity {
 	}
 	public CiudadEntity(CiudadDto ciudad) {
 		this.id = ciudad.id;
-		this.nombre = ciudad.nombre;
+		this.nombre = ciudad.city_name;
 	}
 	public String getNombre() {
 		return nombre;
@@ -33,7 +33,7 @@ public class CiudadEntity {
 	public CiudadDto getDto() {
 		CiudadDto dto = new CiudadDto();
 		dto.id = this.id;
-		dto.nombre = this.nombre;
+		dto.city_name = this.nombre;
 		return dto;
 	}
 }

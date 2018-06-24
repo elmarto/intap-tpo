@@ -17,7 +17,7 @@
       </mat-form-field>
 
       <mat-form-field class="field">
-        <mat-select formControlName="mediosDePago" placeholder="Tipo de Habitacion">
+        <mat-select formControlName="mediosDePago" placeholder="Medio de Pago">
           <mat-option *ngFor="let medioDePago of mediosDePago" [value]="medioDePago.value">{{ medioDePago.value }}</mat-option>
         </mat-select>
         <mat-error class="error-combo" *ngIf="form.get('mediosDePago').touched && form.get('mediosDePago').hasError('required')">Este campo es requerido</mat-error>
@@ -62,10 +62,10 @@
 
       <div class="field"></div>
 
-      <div class="field">
+      <div fxFlex="100">
         <h3>Servicios</h3>
-        <div fxLayout="row" fxLayoutGap="1em">
-          <div *ngFor="let tipoServicio of tipoServicios" fxLayout="column">
+        <div fxLayout="row wrap" fxLayoutGap="1em">
+          <div *ngFor="let tipoServicio of tipoServicios" fxLayout="column" fxFlex="200px">
             <h4>{{tipoServicio.nombre}}</h4>
             <div fxLayout="column">
               <mat-checkbox *ngFor="let servicio of tipoServicio.servicios" (change)="onServicioChecked(servicio)" style="margin-left: 1em;">{{servicio.nombre}}</mat-checkbox>

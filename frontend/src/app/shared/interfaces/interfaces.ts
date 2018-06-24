@@ -8,7 +8,7 @@ export interface Establecimiento {
   hotel?: Hotel;
   descripcion: string;
   mapa: Mapa;
-  fotosEstablecimiento: Foto[];
+  fotosEstablecimiento: string;
 }
 
 export interface Hotel {
@@ -19,7 +19,7 @@ export interface Hotel {
 
 export interface Ciudad {
   id: number;
-  nombre: string;
+  city_name: string;
 }
 
 export interface Mapa {

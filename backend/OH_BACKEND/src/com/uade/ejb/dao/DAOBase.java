@@ -18,9 +18,13 @@ public class DAOBase {
 		entityManager.getTransaction().commit();
 		entityManager.close();
 	}
-
-	public void saveOrUpdate(Object obj) {
-		
+	
+	public void update(Object obj) {
+		EntityManager entityManager = LocalEntityManagerFactory.createEntityManager();	
+		entityManager.getTransaction().begin();
+		entityManager.merge(obj);
+		entityManager.getTransaction().commit();
+		entityManager.close();
 	}
 	
 	public Object buscar(String className, String campo, String id) {
