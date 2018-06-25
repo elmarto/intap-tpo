@@ -73,8 +73,12 @@ export class EstablecimientoCreateComponent implements OnInit {
   //   this.fotosEstablecimiento.removeAt(index);
   // }
 
-  selectCiudad(ciudad) {
-    this.ciudadSelected = ciudad;
+  selectCiudad(event) {
+    this.ciudadSelected = event.option.value;
+  }
+
+  getCityName(ciudad) {
+    return !ciudad ? null : ciudad.city_name;
   }
 
   filterCiudades(nombre: string) {

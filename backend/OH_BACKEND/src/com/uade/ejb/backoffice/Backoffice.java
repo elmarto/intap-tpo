@@ -26,14 +26,15 @@ public class Backoffice {
 	// private static final String URL_BACKOFFICE = "http://192.168.0.150:8080/BackofficeWebServices/rest";
     // private static final String URL_BACKOFFICE = "http://192.168.130.104:8080/IA_TPO_BO_G05_DWS/REST";
 
-    public static SolicitudHoteleraResponse enviarSolicitudHotelera(EstablecimientoEntity establecimiento) {
+    public static String enviarSolicitudHotelera(EstablecimientoEntity establecimiento) {
+    	String codEntidad = null;
         try {
         	SolicitudHoteleraRequest request = new SolicitudHoteleraRequest();
         	request.direccion = establecimiento.direccion;
         	request.nombre = establecimiento.nombre;
         	request.tipo = 1; // Solicitud OH
         	
-            ResteasyClient client = new ResteasyClientBuilder().establishConnectionTimeout(8, TimeUnit.SECONDS).socketTimeout(5, TimeUnit.SECONDS).build();
+            ResteasyClient client = new ResteasyClientBuilder().establishConnectionTimeout(12, TimeUnit.SECONDS).socketTimeout(12, TimeUnit.SECONDS).build();
             ResteasyWebTarget target = client.target(URL_BACKOFFICE + "/solicitudes");
             Response response = target.request().put(Entity.entity(request, "application/json"));
             try {
@@ -46,7 +47,7 @@ public class Backoffice {
                 ObjectMapper mapper = new ObjectMapper();
                 JsonFactory factory = mapper.getFactory();
                 JsonParser jp = factory.createJsonParser(jsonString);
-                String codEntidad;
+                
                 
                 if (jsonString.charAt(0) == '{') {                	
                 	JsonNode actualObj = mapper.readTree(jp);
@@ -70,7 +71,7 @@ public class Backoffice {
         } catch (Exception e) {
         	ConsoleLogger.error("Error sending Solicitud de Alta de Establecimiento to Backoffice");
         }
-        return null;
+        return codEntidad;
     }
 
     public static void log(int accion) {

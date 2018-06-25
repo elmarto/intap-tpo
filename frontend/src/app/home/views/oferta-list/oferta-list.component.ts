@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { NguCarousel } from '@ngu/carousel';
 import { ActivatedRoute } from '@angular/router';
 import { OfertasService } from '../../../shared';
+import { splitAtColon } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-oferta-list',
@@ -21,7 +22,7 @@ export class OfertaListComponent {
 
   parse(param: string) {
     try {
-      return JSON.parse(param);
+      return param.split(',');
     } catch (e) {
       return [];
     }

@@ -2,23 +2,23 @@
 
 <mat-card>
   <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" novalidate>
-    <div fxLayout="row wrap">
-      <mat-form-field class="field">
+    <div fxLayout="row wrap" fxLayout.xs="column">
+      <mat-form-field class="field" fxFlex="48" fxFlex.xs="100">
         <input matInput formControlName="nombre" placeholder="Nombre">
         <mat-error *ngIf="form.get('nombre').hasError('required')">Este campo es requerido</mat-error>
         <mat-error *ngIf="form.get('nombre').hasError('maxlength')">Debe tener menos de 50 caracteres.</mat-error>
       </mat-form-field>
     
-      <mat-form-field class="field">
+      <mat-form-field class="field" fxFlex="48" fxFlex.xs="100">
         <input matInput formControlName="direccion" placeholder="Dirección">
         <mat-error *ngIf="form.get('direccion').hasError('required')">Este campo es requerido</mat-error>
         <mat-error *ngIf="form.get('direccion').hasError('maxlength')">Debe tener menos de 50 caracteres.</mat-error>
       </mat-form-field>
     
-      <mat-form-field class="field">
+      <mat-form-field class="field" fxFlex="48" fxFlex.xs="100">
         <input matInput formControlName="ciudad" placeholder="Ciudad" aria-label="Ciudad" [matAutocomplete]="auto">
-        <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let ciudad of filteredCiudades" [value]="ciudad.city_name" (click)="selectCiudad(ciudad)" (onSelect)="selectCiudad(ciudad)">
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectCiudad($event)" [displayWith]="getCityName(ciudadSelected)">
+          <mat-option *ngFor="let ciudad of filteredCiudades" [value]="ciudad">
             <span>{{ ciudad.city_name }}</span>
           </mat-option>
         </mat-autocomplete>
@@ -26,7 +26,7 @@
         <mat-error *ngIf="form.get('ciudad').hasError('maxlength')">Debe tener menos de 50 caracteres.</mat-error>
       </mat-form-field>
 
-      <div class="field" fxLayoutAlign="start center" fxLayoutGap="1em">
+      <div class="field" fxFlex="48" fxFlex.xs="100" fxLayoutAlign="start center" fxLayoutGap="1em">
         <mat-form-field>
           <mat-select formControlName="estrellas" placeholder="Estrellas">
             <mat-option *ngFor="let estrella of estrellas" [value]="estrella.value">{{ estrella.value }}</mat-option>
@@ -38,7 +38,7 @@
         </span>
       </div>
 
-      <div class="field" fxLayoutAlign="start center" fxLayoutGap="1em" formGroupName="mapa">
+      <div class="field" fxFlex="48" fxFlex.xs="100" fxLayoutAlign="start center" fxLayoutGap="1em" formGroupName="mapa">
         <mat-form-field>
           <input matInput formControlName="lat" placeholder="Latitud">
           <mat-error *ngIf="form.get('mapa.lat').hasError('required')">Este campo es requerido</mat-error>
@@ -52,7 +52,7 @@
         </mat-form-field>
       </div>
 
-      <mat-form-field class="field">
+      <mat-form-field class="field" fxFlex="48" fxFlex.xs="100">
         <textarea matInput formControlName="descripcion" placeholder="Descripción"></textarea>
         <mat-error *ngIf="form.get('descripcion').hasError('required')">Este campo es requerido</mat-error>
         <mat-error *ngIf="form.get('descripcion').hasError('maxlength')">Debe tener menos de 100 caracteres.</mat-error>
@@ -63,10 +63,10 @@
   
         <h3>Imagen</h3>
   
-        <div fxLayout="row">
-          <!-- <div formArrayName="fotosEstablecimiento" class="field">
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="1em">
+          <!-- <div formArrayName="fotosEstablecimiento" class="field" fxFlex="48" fxFlex.xs="100">
             <div *ngFor="let item of fotosEstablecimiento.controls; let i = index;" [formGroupName]="i" fxLayout fxLayoutAlign="start center" fxLayoutGap="1em">
-              <mat-form-field class="field">
+              <mat-form-field class="field" fxFlex="48" fxFlex.xs="100">
                 <input matInput formControlName="url" placeholder="Foto URL">
               </mat-form-field>
               <button type="button" mat-icon-button color="primary" (click)="removeFoto(i)" *ngIf="i == fotosEstablecimiento.controls.length - 1 && i !== 0">
@@ -78,12 +78,12 @@
             </div>
           </div> -->
   
-          <div class="field" fxLayout="row wrap" fxLayoutGap="5px">
+          <div class="field" fxFlex="48" fxFlex.xs="100" fxLayout="row wrap" fxLayoutGap="5px">
             <!-- <i fxFlex="100">{{imageUrl}}</i> -->
             <img style="width: 50px; height: 50px;" *ngFor="let image of images" (click)="loadImage(image)" [src]="image">
           </div>
 
-          <div class="field" fxLayout="row wrap" fxLayoutGap="5px" style="padding-bottom: 2em;" *ngIf="imageLoaded">
+          <div class="field" fxFlex="48" fxFlex.xs="100" fxLayout="row wrap" fxLayoutGap="5px" style="padding-bottom: 2em;" *ngIf="imageLoaded">
             <img style="height: 300px;" [src]="imageLoaded">
           </div>
         </div>

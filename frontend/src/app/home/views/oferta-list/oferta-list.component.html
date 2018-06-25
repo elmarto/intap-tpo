@@ -18,9 +18,15 @@
             </mat-panel-title>
             <mat-panel-description>${{oferta.precio}} | Disponibilidad: {{oferta.cupo}}</mat-panel-description>
           </mat-expansion-panel-header>
-      
-          <p>Establecimiento: {{oferta.establecimiento.nombre}}</p>
-          <p>Servicios: <span *ngFor="let servicio of parse(oferta.servicios)" class="servicio">{{servicio}}</span></p>
+          <div fxLayoutAlign="space-between center">
+            <div>
+              <p><strong>Establecimiento</strong> <br> {{oferta.establecimiento.nombre}}</p>
+              <p *ngIf="oferta.servicios !== ''"><strong>Servicios</strong> <br> <span *ngFor="let servicio of parse(oferta.servicios)" class="servicio">{{servicio}}</span></p>
+              <p><strong>Duración</strong> <br> {{oferta.fechaDesde | date}} ~ {{oferta.fechaHasta | date}}</p>
+            </div>
+    
+            <img style="width: 100px; height: 100px;" [src]="oferta.establecimiento.fotosEstablecimiento">
+          </div>
         </mat-expansion-panel>
       </mat-accordion>
     </div>

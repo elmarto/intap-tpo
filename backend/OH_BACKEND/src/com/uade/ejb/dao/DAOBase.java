@@ -15,6 +15,7 @@ public class DAOBase {
 		EntityManager entityManager = LocalEntityManagerFactory.createEntityManager();	
 		entityManager.getTransaction().begin();
 		entityManager.persist(obj);
+		entityManager.flush();
 		entityManager.getTransaction().commit();
 		entityManager.close();
 	}
@@ -23,6 +24,7 @@ public class DAOBase {
 		EntityManager entityManager = LocalEntityManagerFactory.createEntityManager();	
 		entityManager.getTransaction().begin();
 		entityManager.merge(obj);
+		entityManager.flush();
 		entityManager.getTransaction().commit();
 		entityManager.close();
 	}

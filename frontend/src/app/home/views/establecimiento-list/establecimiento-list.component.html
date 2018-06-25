@@ -22,9 +22,15 @@
           </mat-panel-title>
           <mat-panel-description>{{establecimiento.ciudad.nombre}}</mat-panel-description>
         </mat-expansion-panel-header>
-    
-        <p>Dirección: {{establecimiento.direccion}}</p>
-        <p>Descripcion: {{establecimiento.descripcion}}</p>
+        
+        <div fxLayoutAlign="space-between center">
+          <div>
+            <p><strong>Dirección</strong> <br> {{establecimiento.direccion}}</p>
+            <p><strong>Descripcion</strong> <br> {{establecimiento.descripcion}}</p>
+          </div>
+  
+          <img style="width: 100px; height: 100px;" [src]="establecimiento.fotosEstablecimiento">
+        </div>
       </mat-expansion-panel>
     </mat-accordion>
   </div>

@@ -18,7 +18,7 @@ import com.uade.ejb.dto.OfertaHoteleraDto;
 @Table(name = "ofertas")
 public class OfertaHoteleraEntity {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id", updatable = false, nullable = false)
 	public int id;
 	public String nombre;
@@ -50,16 +50,6 @@ public class OfertaHoteleraEntity {
 		this.politicas = ofertaDto.politicas;
 		this.servicios = ofertaDto.servicios;
 	}
-	
-//	public String getServicesString() {
-//		String result = "";
-//		for (Iterator<OfferServiceEntity> i = this.service.iterator(); i.hasNext();) {
-//			OfferServiceEntity item = i.next();
-//			result = result + " " + item.serviceName;
-//		}
-//		
-//		return result;
-//	}
 	
 	public int getId() {
 		return id;
@@ -151,6 +141,7 @@ public class OfertaHoteleraEntity {
 
 	public OfertaHoteleraDto getDto() {
 		OfertaHoteleraDto oferta = new OfertaHoteleraDto();
+		oferta.id = this.id;
 		oferta.nombre = this.nombre;
 		oferta.precio = this.precio;
 		oferta.cupo = this.cupo;

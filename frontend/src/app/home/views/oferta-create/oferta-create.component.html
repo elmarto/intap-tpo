@@ -2,65 +2,65 @@
 
 <mat-card>
   <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" novalidate>
-    <div fxLayout="row wrap">
-      <mat-form-field class="field">
+    <div fxLayout="row wrap" fxLayout.xs="column">
+      <mat-form-field class="field" fxFlex="48" fxFlex.xs="100">
         <input matInput formControlName="nombre" placeholder="Nombre">
         <mat-error *ngIf="form.get('nombre').hasError('required')">Este campo es requerido</mat-error>
         <mat-error *ngIf="form.get('nombre').hasError('maxlength')">Debe tener menos de 50 caracteres.</mat-error>
       </mat-form-field>
 
-      <mat-form-field class="field">
+      <mat-form-field class="field" fxFlex="48" fxFlex.xs="100">
         <mat-select formControlName="establecimiento" placeholder="Establecimiento">
           <mat-option *ngFor="let establecimiento of establecimientos" [value]="establecimiento">{{ establecimiento.nombre }}</mat-option>
         </mat-select>
         <mat-error class="error-combo" *ngIf="form.get('establecimiento').touched && form.get('establecimiento').hasError('required')">Este campo es requerido</mat-error>
       </mat-form-field>
 
-      <mat-form-field class="field">
+      <mat-form-field class="field" fxFlex="48" fxFlex.xs="100">
         <mat-select formControlName="mediosDePago" placeholder="Medio de Pago">
           <mat-option *ngFor="let medioDePago of mediosDePago" [value]="medioDePago.value">{{ medioDePago.value }}</mat-option>
         </mat-select>
         <mat-error class="error-combo" *ngIf="form.get('mediosDePago').touched && form.get('mediosDePago').hasError('required')">Este campo es requerido</mat-error>
       </mat-form-field>
 
-      <mat-form-field class="field">
+      <mat-form-field class="field" fxFlex="48" fxFlex.xs="100">
         <input matInput formControlName="precio" placeholder="Precio ($)" type="number">
         <mat-error *ngIf="form.get('nombre').hasError('required')">Este campo es requerido</mat-error>
         <mat-error *ngIf="form.get('nombre').hasError('min')">Debe ser mayor a 0</mat-error>
       </mat-form-field>
 
-      <mat-form-field class="field">
+      <mat-form-field class="field" fxFlex="48" fxFlex.xs="100">
         <input matInput formControlName="cupo" placeholder="Cupo" type="number">
         <mat-error *ngIf="form.get('nombre').hasError('required')">Este campo es requerido</mat-error>
         <mat-error *ngIf="form.get('nombre').hasError('min')">Debe ser mayor a 0</mat-error>
         <mat-error *ngIf="form.get('nombre').hasError('max')">Debe ser menor a 5</mat-error>
       </mat-form-field>
 
-      <mat-form-field class="field">
+      <mat-form-field class="field" fxFlex="48" fxFlex.xs="100">
         <mat-select formControlName="tipoHabitacion" placeholder="Tipo de Habitacion">
           <mat-option *ngFor="let tipoHabitacion of tiposHabitacion" [value]="tipoHabitacion.value">{{ tipoHabitacion.value }}</mat-option>
         </mat-select>
         <mat-error class="error-combo" *ngIf="form.get('tipoHabitacion').touched && form.get('tipoHabitacion').hasError('required')">Este campo es requerido</mat-error>
       </mat-form-field>
 
-      <mat-form-field class="field">
+      <mat-form-field class="field" fxFlex="48" fxFlex.xs="100">
         <input matInput formControlName="fechaDesde" [matDatepicker]="fechaDesde" placeholder="Fecha Desde">
         <mat-datepicker-toggle matSuffix [for]="fechaDesde"></mat-datepicker-toggle>
         <mat-datepicker #fechaDesde></mat-datepicker>
       </mat-form-field>
 
-      <mat-form-field class="field">
+      <mat-form-field class="field" fxFlex="48" fxFlex.xs="100">
         <input matInput formControlName="fechaHasta" [matDatepicker]="fechaHasta" placeholder="Fecha Hasta">
         <mat-datepicker-toggle matSuffix [for]="fechaHasta"></mat-datepicker-toggle>
         <mat-datepicker #fechaHasta></mat-datepicker>
       </mat-form-field>
 
-      <mat-form-field class="field">
+      <mat-form-field class="field" fxFlex="48" fxFlex.xs="100">
         <textarea matInput formControlName="politicas" placeholder="Politicas"></textarea>
         <mat-error *ngIf="form.get('politicas').hasError('required')">Este campo es requerido</mat-error>
       </mat-form-field>
 
-      <div class="field"></div>
+      <div class="field" fxFlex="48" fxFlex.xs="100"></div>
 
       <div fxFlex="100">
         <h3>Servicios</h3>
