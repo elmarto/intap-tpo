@@ -77,7 +77,7 @@ export class OfertaCreateComponent implements OnInit {
       establecimiento:  ctrl.establecimiento.value,
       fechaDesde: ctrl.fechaDesde.value.toISOString(),
       fechaHasta: ctrl.fechaHasta.value.toISOString(),
-      politicas: ctrl.fechaHasta.value,
+      politicas: ctrl.politicas.value,
       servicios: ''
     };
 

@@ -16,11 +16,12 @@
             <mat-panel-title fxLayoutGap="1em" style="width: 200px;">
               <span>{{oferta.nombre}}</span>
             </mat-panel-title>
-            <mat-panel-description>${{oferta.precio}} | Disponibilidad: {{oferta.cupo}}</mat-panel-description>
+            <mat-panel-description>{{oferta.establecimiento.nombre}}</mat-panel-description>
           </mat-expansion-panel-header>
           <div fxLayoutAlign="space-between center">
             <div>
-              <p><strong>Establecimiento</strong> <br> {{oferta.establecimiento.nombre}}</p>
+              <p><strong>Precio</strong> <br> ${{oferta.precio}}</p>
+              <p><strong>Disponibilidad</strong> <br> {{oferta.cupo}}</p>
               <p *ngIf="oferta.servicios !== ''"><strong>Servicios</strong> <br> <span *ngFor="let servicio of parse(oferta.servicios)" class="servicio">{{servicio}}</span></p>
               <p><strong>Duración</strong> <br> {{oferta.fechaDesde | date}} ~ {{oferta.fechaHasta | date}}</p>
             </div>

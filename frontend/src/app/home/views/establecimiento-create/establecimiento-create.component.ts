@@ -77,8 +77,8 @@ export class EstablecimientoCreateComponent implements OnInit {
     this.ciudadSelected = event.option.value;
   }
 
-  getCityName(ciudad) {
-    return !ciudad ? null : ciudad.city_name;
+  getCityName() {
+    return (ciudad) => !ciudad ? null : ciudad.city_name;
   }
 
   filterCiudades(nombre: string) {
