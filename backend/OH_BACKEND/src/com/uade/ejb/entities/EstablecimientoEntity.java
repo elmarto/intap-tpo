@@ -23,7 +23,7 @@ public class EstablecimientoEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", updatable = false, nullable = false)
 	public int id;
-	public String uid;
+	public String uid = "";
 	public String nombre;
 	public String direccion;
 	public String descripcion;

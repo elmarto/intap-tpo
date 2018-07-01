@@ -80,11 +80,11 @@
   
           <div class="field" fxFlex="48" fxFlex.xs="100" fxLayout="row wrap" fxLayoutGap="5px">
             <!-- <i fxFlex="100">{{imageUrl}}</i> -->
-            <img style="width: 50px; height: 50px;" *ngFor="let image of images" (click)="loadImage(image)" [src]="image">
+            <img style="width: 50px; height: 50px;" *ngFor="let image of images" (click)="loadImage(image)" [src]="'data:image/jpeg;base64,' + image">
           </div>
 
           <div class="field" fxFlex="48" fxFlex.xs="100" fxLayout="row wrap" fxLayoutGap="5px" style="padding-bottom: 2em;" *ngIf="imageLoaded">
-            <img style="height: 300px;" [src]="imageLoaded">
+            <img style="height: 300px;" [src]="'data:image/jpeg;base64,' + imageLoaded">
           </div>
         </div>
       </div>

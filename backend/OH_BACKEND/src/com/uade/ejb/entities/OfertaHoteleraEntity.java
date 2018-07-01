@@ -18,7 +18,7 @@ import com.uade.ejb.dto.OfertaHoteleraDto;
 @Table(name = "ofertas")
 public class OfertaHoteleraEntity {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", updatable = false, nullable = false)
 	public int id;
 	public String nombre;

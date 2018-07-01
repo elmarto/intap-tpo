@@ -9,7 +9,7 @@ public class EstablecimientoDto {
 	public String nombre;
 	public String direccion;
 	public String descripcion;
-    public String uid;
+    public String uid = "";
     public String fotosEstablecimiento;
     public CiudadDto ciudad;
     public HotelDto hotel;

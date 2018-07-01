@@ -51,6 +51,8 @@ public class OHServiceBean implements OHService {
     @Override
     public OfertaHoteleraDto createNewOffer(OfertaHoteleraDto oferta) {
     	OfertaHoteleraEntity ofertaEntity = new OfertaHoteleraEntity(oferta);
+    	ofertaHoteleraDAO.CreateNewOffer(ofertaEntity);
+    	oferta.id = ofertaEntity.getId();
     	Backoffice.log(2);
     	RemoteQueueInteractor queue;
 		try {
@@ -59,12 +61,10 @@ public class OHServiceBean implements OHService {
 			System.out.println(oferta.toString());
 			queue.sendTextMessage(oferta.toString());
 		} catch (NamingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("ERROR ENVIANDO A LA COLA: NamingException");
 		} catch (JMSException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("ERROR ENVIANDO A LA COLA: JMSException");
 		}
-    	return ofertaHoteleraDAO.CreateNewOffer(ofertaEntity);
+    	return oferta;
     }
 }
